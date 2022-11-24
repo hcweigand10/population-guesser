@@ -198,8 +198,8 @@ function App() {
     const [score, setScore] = useState<number>();
 
     useEffect(() => {
-        // setCountry(countryList[Math.floor(Math.random() * countryList.length)]);
-        setCountry("United Arab Emirates")
+        setCountry(countryList[Math.floor(Math.random() * countryList.length)]);
+        // setCountry("United Arab Emirates")
     }, []);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -208,7 +208,6 @@ function App() {
 
     const checkGuess = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const guess: number = parseInt(input);
         if (isSuccess) {
             setScore(getScore());
             setShowScore(true);
@@ -222,10 +221,10 @@ function App() {
     });
 
     const getScore = () => {
-      const guess = parseFloat(input)
+      const guess:number = parseFloat(input)
       console.log(guess,answer)
-      const result = 100*Math.E**(-((10*strict**2)/(answer**0.1))*(Math.log(answer)-Math.log(guess))**2)
-      // const result = 200-((Math.sqrt(Math.abs(answer-guess)))/(answer)*100);
+      // wow, look at this
+      const result:number = 100*Math.E**(-((10*strict**2)/(answer**0.1))*(Math.log(answer)-Math.log(guess))**2)
       return result
     };
 
