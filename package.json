@@ -11,10 +11,18 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "axios": "^1.2.0",
+    "d3": "^7.6.1",
+    "deck.gl": "^8.8.20",
+    "google-map-react": "^2.2.0",
+    "mapbox-gl": "^2.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-globe.gl": "^2.22.8",
+    "react-map-gl": "^7.0.19",
     "react-query": "^3.39.2",
     "react-scripts": "5.0.1",
+    "react-simple-maps": "^3.0.0",
+    "react-tooltip": "^4.5.1",
     "typescript": "^4.9.3",
     "web-vitals": "^2.1.4"
   },
@@ -41,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-simple-maps": "^3.0.0"
   }
 }

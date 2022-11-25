@@ -8,7 +8,6 @@ const countriesAPI = axios.create({
 
 const fetchCountryData = async (country: string) => {
     const response = await countriesAPI.get(`?name=${country}`)
-    console.log(response)
     return response.data
 }
 
