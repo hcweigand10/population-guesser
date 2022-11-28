@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import fetchCountryData from "./utils/axios";
 import { useQuery } from "react-query";
 import "./App.css";
 import { countryList } from "./utils/countries";
 import ReactTooltip from "react-tooltip";
-
+import countryData from "./utils/countriesgeojson.json";
 import Globe from "react-globe.gl";
 
 // react simple maps
@@ -14,12 +14,20 @@ import {
   Geography,
   ZoomableGroup,
 } from "react-simple-maps";
+import { stringList } from "aws-sdk/clients/datapipeline";
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
 const strict = 0.3;
 
+interface country {
+  properties: {
+    ISO_A2: string;
+  };
+}
+
 function App() {
+  const globeEl = useRef();
   const [country, setCountry] = useState<string>();
   const [input, setInput] = useState<string>("");
   const [answer, setAnswer] = useState<number>(20);
@@ -46,7 +54,10 @@ function App() {
   const { data, isLoading, isSuccess, isError } = useQuery({
     queryKey: [country || ""],
     queryFn: () => fetchCountryData(country || ""),
-    onSuccess: (data): void => setAnswer(data[0].population / 1000),
+    onSuccess: (data): void => {
+      setCountryCode(data[0].iso2);
+      setAnswer(data[0].population / 1000);
+    },
   });
 
   const getScore = () => {
@@ -61,7 +72,19 @@ function App() {
     return result;
   };
 
-  const [content, setTooltipContent] = useState("");
+  const [countryCode, setCountryCode] = useState<string>("");
+  const [content, setTooltipContent] = useState<string>("");
+  const [countries, setCountries] = useState<any>(countryData);
+  const [altitude, setAltitude] = useState<number>(0.1);
+  const [transitionDuration, setTransitionDuration] = useState<number>(1000);
+
+  useEffect(() => {
+    // load data
+    setTimeout(() => {
+      setTransitionDuration(4000);
+      setAltitude(() => Math.max(0.1, Math.sqrt(answer) * 7e-5));
+    }, 3000);
+  }, []);
 
   return (
     <div className="App">
@@ -88,7 +111,15 @@ function App() {
       {/* react globe */}
       <div className="world">
         <Globe
-        backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+          ref={globeEl}
+          polygonAltitude={altitude}
+          polygonsTransitionDuration={transitionDuration}
+          polygonsData={countries.features.filter(
+            (d: country) => d.properties.ISO_A2 === countryCode
+          )}
+          polygonCapColor={() => "rgba(200, 0, 0, 0.6)"}
+          polygonSideColor={() => "rgba(0, 100, 0, 0.15)"}
+          backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
           animateIn={true}
           globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
         />
@@ -118,7 +149,7 @@ function App() {
         </text>
       </Annotation>
     </ComposableMap> */}
-      <div data-tip="" data-arrow-color={' #fff'} data-background-color={' #fff'} data-text-color={'#000'}>
+      {/* <div data-tip="" data-arrow-color={' #fff'} data-background-color={' #fff'} data-text-color={'#000'}>
         <ComposableMap>
           <ZoomableGroup>
             <Geographies geography={geoUrl}>
@@ -155,7 +186,7 @@ function App() {
           </ZoomableGroup>
         </ComposableMap>
       </div>
-      <ReactTooltip>{content}</ReactTooltip>
+      <ReactTooltip>{content}</ReactTooltip> */}
     </div>
   );
 }
