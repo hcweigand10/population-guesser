@@ -5,7 +5,8 @@ import "./App.css";
 import { countryList } from "./utils/countries";
 import ReactTooltip from "react-tooltip";
 import countryData from "./utils/countriesgeojson.json";
-import Globe from "react-globe.gl";
+import Globe, {GlobeMethods, GlobeProps} from "react-globe.gl";
+
 
 // react simple maps
 import {
@@ -14,9 +15,12 @@ import {
   Geography,
   ZoomableGroup,
 } from "react-simple-maps";
-import { stringList } from "aws-sdk/clients/datapipeline";
+
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
+
+
+
 
 const strict = 0.3;
 
@@ -25,14 +29,20 @@ interface country {
     ISO_A2: string;
   };
 }
+interface globeRef {
+  current: {
+    pointOfView: () => void
+  }
+}
 
 function App() {
-  const globeEl = useRef();
+  const globeEl = useRef<globeRef>();
   const [country, setCountry] = useState<string>();
   const [input, setInput] = useState<string>("");
   const [answer, setAnswer] = useState<number>(20);
   const [showScore, setShowScore] = useState<boolean>(false);
   const [score, setScore] = useState<number>();
+  const [mapCenter, setMapCenter] = useState<{lat: number, lng: number, altitude: number}>({lat: 0, lng: 0, altitude: 2});
 
   useEffect(() => {
     setCountry(countryList[Math.floor(Math.random() * countryList.length)]);
@@ -54,9 +64,13 @@ function App() {
   const { data, isLoading, isSuccess, isError } = useQuery({
     queryKey: [country || ""],
     queryFn: () => fetchCountryData(country || ""),
-    onSuccess: (data): void => {
+    onSuccess: (response): void => {
+      const{data, coord} = response;
+      console.log(response);
       setCountryCode(data[0].iso2);
       setAnswer(data[0].population / 1000);
+      setMapCenter({lat: coord[0], lng: coord[1], altitude: Math.max(0.4, Math.sqrt(data[0].population /1000) * 0.2)});
+      return data;
     },
   });
 
@@ -84,16 +98,17 @@ function App() {
       setTransitionDuration(4000);
       setAltitude(() => Math.max(0.1, Math.sqrt(answer) * 7e-5));
     }, 3000);
-  }, []);
+    globeEl.current.pointOfView(mapCenter, 4000);
+  }, [mapCenter]);
 
   return (
     <div className="App">
       <h2>{country}</h2>
       {isError && <p>error</p>}
       {isLoading ? <p>Loading...</p> : <p>data recieved</p>}
-      {isSuccess && data.length > 0 && (
+      {isSuccess && data.data.length > 0 && (
         <div>
-          <p>Population: {data[0].population / 1000}M</p>
+          <p>Population: {data.data[0].population / 1000}M</p>
           <form onSubmit={checkGuess}>
             <input
               placeholder="Guess here!"
@@ -108,20 +123,26 @@ function App() {
         <p>Your Score is: {score.toLocaleString("en-US")}!</p>
       )}
 
-      {/* react globe */}
+      {/* try react globe next */}
+
+      
+
+      {/* react globe.gl */}
       <div className="world">
         <Globe
           ref={globeEl}
           polygonAltitude={altitude}
           polygonsTransitionDuration={transitionDuration}
           polygonsData={countries.features.filter(
-            (d: country) => d.properties.ISO_A2 === countryCode
+            (d: country) => {
+              return d.properties.ISO_A2 === countryCode}
           )}
-          polygonCapColor={() => "rgba(200, 0, 0, 0.6)"}
-          polygonSideColor={() => "rgba(0, 100, 0, 0.15)"}
+          polygonCapColor={() => "rgba(255, 255, 255, 0.7)"}
+          polygonSideColor={() => "rgba(255, 255, 255, 0.15)"}
           backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
           animateIn={true}
-          globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
+          showAtmosphere={true}
+          globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
         />
       </div>
 
