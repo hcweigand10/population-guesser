@@ -12,7 +12,7 @@ const Daily = () => {
 
         const storedScore = localStorage.getItem(now)
         if (storedScore) {
-
+            
         }
     }, [])
     
