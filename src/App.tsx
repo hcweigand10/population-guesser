@@ -86,8 +86,8 @@ function App() {
     return result;
   };
 
-  const [countryCode, setCountryCode] = useState<string>("");
-  const [content, setTooltipContent] = useState<string>("");
+  const [countryCode, setCountryCode] = useState<string | null>(null);
+  const [content, setTooltipContent] = useState<string | null>(null);
   const [countries, setCountries] = useState<any>(countryData);
   const [altitude, setAltitude] = useState<number>(0.1);
   const [transitionDuration, setTransitionDuration] = useState<number>(1000);
