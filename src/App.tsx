@@ -6,13 +6,14 @@ import "./App.css";
 import Daily from "./pages/Daily";
 import Practice from "./pages/Practice";
 import About from "./pages/About";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/navbar";
 
 
 
 function App() {
 
     return (
+      <div className="App">
         <BrowserRouter>
           <Navbar/>
           <Routes>
@@ -21,7 +22,10 @@ function App() {
             <Route path="/about" element={<About/>}/>
           </Routes>
         </BrowserRouter>
+      </div>
     );
 }
 
 export default App;
+
+
