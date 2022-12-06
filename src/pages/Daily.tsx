@@ -3,6 +3,8 @@ import moment from "moment";
 import Game from "../components/game";
 import shuffledList from "../utils/shuffledList";
 
+import GlobeComponent from "../components/globe";
+
 const Daily = () => {
     const [country, setCountry] = useState<string>("");
     const [score, setScore] = useState<number>(0);
@@ -20,6 +22,7 @@ const Daily = () => {
             setScore(JSON.parse(storedScore).score);
         } else {
             setScore(0)
+            //neccessary??
         }
     }, [daysSinceDec1, now]);
 
@@ -43,6 +46,7 @@ const Daily = () => {
                     Come back tomorrow to play the next daily challenge!
                 </p>
             )}
+            <GlobeComponent/>
         </div>
     );
 };
