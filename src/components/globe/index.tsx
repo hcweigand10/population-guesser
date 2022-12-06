@@ -48,7 +48,7 @@ function GlobeComponent(props: props) {
       {/* react globe.gl */}
       <div className="world">
         <Globe
-          ref={globeEl}
+        //   ref={globeEl}
           polygonAltitude={altitude}
           polygonsTransitionDuration={transitionDuration}
           polygonsData={countries.features.filter(
