@@ -9,17 +9,19 @@ const Daily = () => {
 
     const now: string = moment().format("YYYY-MM-DD");
     const daysSinceDec1: number = parseInt(
-        moment("2022-11-29", "YYYY-MM-DD").fromNow().split(" ")[0]
-    );
+        moment("2022-11-25", "YYYY-MM-DD").fromNow().split(" ")[0]
+    )% shuffledList.length;
     console.log(daysSinceDec1);
 
     useEffect(() => {
         setCountry(shuffledList[daysSinceDec1]);
-        const storedScore: {score:number} = JSON.parse(localStorage.getItem(now) || "");
-        if (storedScore) {
-            setScore(storedScore.score)
+        const storedScore = localStorage.getItem(now);
+        if (typeof storedScore === "string") {
+            setScore(JSON.parse(storedScore).score);
+        } else {
+            setScore(0)
         }
-    }, [daysSinceDec1,now]);
+    }, [daysSinceDec1, now]);
 
     useEffect(() => {
         if (score > 0) {
@@ -30,12 +32,17 @@ const Daily = () => {
                 })
             );
         }
-    }, [score]);
+    }, [score, now]);
 
     return (
         <div>
             <h3>Daily</h3>
             <Game country={country} score={score} setScore={setScore} />
+            {score > 0 && (
+                <p style={{ fontSize: "12px" }}>
+                    Come back tomorrow to play the next daily challenge!
+                </p>
+            )}
         </div>
     );
 };
