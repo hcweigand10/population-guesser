@@ -2,9 +2,10 @@ import React, { useState, useEffect, SetStateAction } from "react";
 import { useQuery } from "react-query";
 import fetchCountryData from "../../utils/axios";
 import countryList from "../../utils/countryList";
+import GlobeComponent from "../globe";
 import Loading from "../loading";
 import ScoreDisplay from "../scoreDisplay";
-import "./game.css"
+import "./game.css";
 
 const strict = 0.3;
 
@@ -16,7 +17,9 @@ interface props {
 
 const Game = (props: props) => {
     const [input, setInput] = useState<string>("");
-    const [answer, setAnswer] = useState<number>(20);
+    const [population, setPopulation] = useState<number>(20);
+    const [iso2, setIso2] = useState<string>("")
+    const [coordinates, setCoordinates] = useState<number[]>([])
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
@@ -25,7 +28,11 @@ const Game = (props: props) => {
     const { data, isLoading, isSuccess, isError, error } = useQuery({
         queryKey: [props.country || ""],
         queryFn: () => fetchCountryData(props.country || ""),
-        onSuccess: (data): void => setAnswer(data[0].population / 1000),
+        onSuccess: (data): void => {
+            setPopulation(data.info[0].population / 1000);
+            setIso2(data.info[0].iso2)
+            setCoordinates(data.coord)
+        },
     });
 
     const checkGuess = (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,13 +44,12 @@ const Game = (props: props) => {
     };
 
     const calculateScore = (guess: number): number => {
-        console.log(guess, answer);
         // wow, look at this
         const result: number =
             100 *
             Math.E **
-                (-((10 * strict ** 2) / answer ** 0.1) *
-                    (Math.log(answer) - Math.log(guess)) ** 2);
+                (-((10 * strict ** 2) / population ** 0.1) *
+                    (Math.log(population) - Math.log(guess)) ** 2);
         return parseInt(result.toFixed(2));
     };
 
@@ -54,27 +60,22 @@ const Game = (props: props) => {
             {isLoading ? (
                 <Loading />
             ) : (
-                <div>
-                    {props.score > 0 ? null : (
-                        <form onSubmit={checkGuess}>
-                            <input
-                                placeholder="Guess here! (in millions)"
-                                onChange={handleInputChange}
-                            ></input>
-                            <button type="submit">Submit Guess</button>
-                        </form>
-                    )}
-
-                    {props.score ? (
-                        <>
-                            <p>
-                                Your Score is:{" "}
-                                {props.score.toLocaleString("en-US")}
-                            </p>
-                        </>
-                    ) : null}
-                    <ScoreDisplay score={props.score} />
-                </div>
+                <>
+                    <div>
+                        {props.score > 0 ? (
+                            <ScoreDisplay score={props.score} />
+                        ) : (
+                            <form onSubmit={checkGuess}>
+                                <input
+                                    placeholder="Guess here! (in millions)"
+                                    onChange={handleInputChange}
+                                ></input>
+                                <button type="submit">Submit Guess</button>
+                            </form>
+                        )}
+                    </div>
+                    <GlobeComponent country={props.country} iso2={iso2} population={population} coordinates={coordinates}/>
+                </>
             )}
         </div>
     );

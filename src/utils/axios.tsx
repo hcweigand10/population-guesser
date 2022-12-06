@@ -11,7 +11,7 @@ const fetchCountryData = async (country: string) => {
     const response = await countriesAPI.get(`?name=${country}`)
     const latLing = await fetch(`https://restcountries.com/v2/alpha/${response.data[0].iso2}`);
     const latLingData = await latLing.json();
-    return  {data: response.data, coord: latLingData.latlng};
+    return  {info: response.data, coord: latLingData.latlng};
 }
 
 export default fetchCountryData

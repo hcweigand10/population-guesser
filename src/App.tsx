@@ -3,7 +3,7 @@ import "./App.css";
 import Daily from "./pages/Daily";
 import Practice from "./pages/Practice";
 import About from "./pages/About";
-import Navigation from "./components/navigation/Navigation";
+import Navigation from "./components/navigation";
 
 function App() {
   return (
