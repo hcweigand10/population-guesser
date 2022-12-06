@@ -7,9 +7,11 @@ const countriesAPI = axios.create({
 })
 
 const fetchCountryData = async (country: string) => {
+
     const response = await countriesAPI.get(`?name=${country}`)
-    console.log(response)
-    return response.data
+    const latLing = await fetch(`https://restcountries.com/v2/alpha/${response.data[0].iso2}`);
+    const latLingData = await latLing.json();
+    return  {data: response.data, coord: latLingData.latlng};
 }
 
 export default fetchCountryData

@@ -35,7 +35,7 @@ const Game = (props: props) => {
     const { data, isLoading, isSuccess, isError, error } = useQuery({
         queryKey: [props.country || ""],
         queryFn: () => fetchCountryData(props.country || ""),
-        onSuccess: (data): void => setAnswer(data[0].population/1000),
+        onSuccess: (data: [{population: number}]): void => setAnswer(data[0].population/1000),
     });
 
     const getScore = () => {
