@@ -4,7 +4,7 @@ import countryList from "../utils/countryList";
 
 const Practice = () => {
     const [country, setCountry] = useState<string>("");
-    const [score, setScore] = useState<number>(0);
+    const [score, setScore] = useState<number>(-1);
 
     useEffect(() => {
         newCountry();
@@ -13,14 +13,14 @@ const Practice = () => {
 
     const newCountry = () => {
         setCountry(countryList[Math.floor(Math.random() * countryList.length)]);
-        setScore(0)
+        setScore(-1)
     };
 
     return (
-        <>
-            <Game country={country} score={score} setScore={setScore} />
-            <button onClick={newCountry}>New Country</button>
-        </>
+        <div className="practice mx-auto max-w-4xl">
+            <Game country={country} setCountry={setCountry} score={score} setScore={setScore}/>
+            <button type="button" className="bg-indigo-500 p-1 rounded-lg text-white" onClick={newCountry}>New Country</button>
+        </div>
     );
 };
 

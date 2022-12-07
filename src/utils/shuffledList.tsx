@@ -28,7 +28,6 @@ const shuffledList = [
     "Armenia",
     "Ireland",
     "Cameroon",
-    "Democratic Republic of the Congo",
     "Czechia",
     "Kazakhstan",
     "Canada",
