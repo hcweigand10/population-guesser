@@ -22,6 +22,7 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "react-simple-maps": "^3.0.0",
+    "react-sizeme": "^3.0.2",
     "react-tooltip": "^4.5.1",
     "three": "^0.146.0",
     "three-glow-mesh": "^0.1.2",

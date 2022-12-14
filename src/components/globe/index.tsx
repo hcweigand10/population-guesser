@@ -3,9 +3,6 @@ import countryData from "../../utils/countriesgeojson.json";
 import Globe, {GlobeMethods} from "react-globe.gl";
 import "./globe.css"
 
-// const geoUrl =
-//   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
-
 
 interface country {
   properties: {
@@ -21,6 +18,8 @@ interface props {
     population: number,
     coordinates: number[],
     iso2: string
+    width: number;
+    height: number;
 }
 
 function GlobeComponent(props: props) {
@@ -33,8 +32,14 @@ function GlobeComponent(props: props) {
   const mapCenter = {
       lat: props.coordinates[0],
       lng: props.coordinates[1],
-      altitude: 1
+      altitude: 1.5
   }
+
+  const handleClick=(() => {
+    if (globeEl.current) {
+      globeEl.current.pointOfView(mapCenter, transitionDuration);
+    }
+  })
 
   useEffect(() => {
     // load data
@@ -45,8 +50,15 @@ function GlobeComponent(props: props) {
   }, [altitude, props.coordinates]);
 
   return (
-      <div className="globe mx-auto p-5">
+      <div className="globe mx-auto">
         <Globe
+          onGlobeReady={() =>
+            // start
+            //globeEl.current.pointOfView({ lat: 30, lng: 7, altitude: 2 }, 5000)
+            // init year n
+            //   globeEl.current.pointOfView({ lat: 30, lng: 180, altitude: 0 }, 100)
+            console.log("test")
+          }
           ref={globeEl}
           polygonAltitude={altitude}
           polygonsTransitionDuration={transitionDuration}
@@ -59,11 +71,13 @@ function GlobeComponent(props: props) {
           backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
           animateIn={false}
           showAtmosphere={false}
-          globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-          width={500}
-          height={500}
+          // during the day have the globe not night but otherwise night mode
+          globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
           arcStartLat={43}
           arcStartLng={43}
+          width={props.width}
+          height={props.height}
+          onPolygonClick= {handleClick}
         />
       </div>
   );

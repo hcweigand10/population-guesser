@@ -26,7 +26,7 @@ const Navbar = () => {
             <div className="-mr-2 -my-2 md:hidden">
               <button
                 type="button"
-                className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                className="z-0 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 z-50"
                 onClick={() => setOpen(!open)}
               >
                 <span className="sr-only">Open menu</span>
@@ -73,13 +73,13 @@ const Navbar = () => {
             </nav>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
               <a
-                href="#"
+                href="test"
                 className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
               >
                 Sign in
               </a>
               <a
-                href="#"
+                href="test"
                 className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
               >
                 Sign up
@@ -101,8 +101,8 @@ const Navbar = () => {
         <div
           className={
             open
-              ? "opacity-100 scale-100 transition ease-out duration-200 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
-              : "opacity-0 scale-95 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+              ? "opacity-100 scale-100 transition ease-out duration-200 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-50"
+              : "opacity-0 scale-95 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden -z-50 pointer-events-none select-none"
           }
         >
           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
@@ -144,7 +144,7 @@ const Navbar = () => {
               <div className="mt-6">
                 <nav className="grid gap-y-8">
                   <a
-                    href="#"
+                    href="www.google.com"
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
                     {/* Heroicon name: outline/chart-bar */}
@@ -168,7 +168,7 @@ const Navbar = () => {
                     </span>
                   </a>
                   <a
-                    href="#"
+                    href="www.google.com"
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
                     {/* Heroicon name: outline/cursor-click */}
@@ -192,7 +192,7 @@ const Navbar = () => {
                     </span>
                   </a>
                   <a
-                    href="#"
+                    href="www.google.com"
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
                     {/* Heroicon name: outline/shield-check */}
@@ -216,7 +216,7 @@ const Navbar = () => {
                     </span>
                   </a>
                   <a
-                    href="#"
+                    href="www.google.com"
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
                     {/* Heroicon name: outline/view-grid */}
@@ -240,7 +240,7 @@ const Navbar = () => {
                     </span>
                   </a>
                   <a
-                    href="#"
+                    href="www.google.com"
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
                     {/* Heroicon name: outline/refresh */}
@@ -269,49 +269,49 @@ const Navbar = () => {
             <div className="py-6 px-5 space-y-6">
               <div className="grid grid-cols-2 gap-y-4 gap-x-8">
                 <a
-                  href="#"
+                  href="www.google.com"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Pricing
                 </a>
                 <a
-                  href="#"
+                  href="www.google.com"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Docs
                 </a>
                 <a
-                  href="#"
+                  href="www.google.com"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Enterprise
                 </a>
                 <a
-                  href="#"
+                  href="www.google.com"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Blog
                 </a>
                 <a
-                  href="#"
+                  href="www.google.com"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Help Center
                 </a>
                 <a
-                  href="#"
+                  href="www.google.com"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Guides
                 </a>
                 <a
-                  href="#"
+                  href="www.google.com"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Security
                 </a>
                 <a
-                  href="#"
+                  href="www.google.com"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Events
@@ -319,7 +319,7 @@ const Navbar = () => {
               </div>
               <div>
                 <a
-                  href="#"
+                  href="www.google.com"
                   className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                 >
                   Sign up
