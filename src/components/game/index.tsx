@@ -119,43 +119,6 @@ const Game = (props: gameProps) => {
           </div>
         )}
       </SizeMe>
-
-      {/* {data ? (
-        <div className="game-container flex mx-auto flex-col lg:flex-row static">
-          <div className="flex-1">
-            <GlobeComponent
-              width={width}
-              height={width / (4 / 3)}
-              country={props.country}
-              iso2={data.info[0].iso2}
-              population={data.info[0].population}
-              coordinates={data.coord}
-            />
-          </div>
-          <div className="flex-1 flex content-center justify-center z-20 md:absolute">
-            {props.score >= 0 ? (
-              <ScoreDisplay score={props.score} />
-            ) : (
-              <form className="bg-gray-200 p-6 " onSubmit={checkGuess}>
-                <h1 className="text-3xl leading-9 tracking-tight my-5">
-                  GeoPopper
-                </h1>
-                <input
-                  type="text"
-                  className="p-2 shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400"
-                  placeholder="Guess here! (in millions)"
-                ></input>
-                <button
-                  type="submit"
-                  className="bg-indigo-500 font-bold rounded-full py-3 px-8 shadow-lg uppercase tracking-wider text-white focus:outline-none"
-                >
-                  Submit Guess
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      ) : null} */}
     </div>
   );
 };

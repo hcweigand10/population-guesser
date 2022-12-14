@@ -3,9 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [open, setOpen] = React.useState(false);
-  const [flyer, setFlyer] = React.useState(false);
-  const [flyerTwo, setFlyerTwo] = React.useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <>
