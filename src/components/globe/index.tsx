@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import countryData from "../../utils/countriesgeojson.json";
-import Globe, {GlobeMethods} from "react-globe.gl";
-import "./globe.css"
-
-// const geoUrl =
-//   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
-
+import Globe, { GlobeMethods } from "react-globe.gl";
+import "./globe.css";
 
 interface country {
   properties: {
@@ -13,59 +9,72 @@ interface country {
   };
 }
 interface globeRef {
-    pointOfView: (mapCenter: {}, transitionDuration: number) => void
+  pointOfView: (mapCenter: {}, transitionDuration: number) => void;
 }
 
 interface props {
-    country: string,
-    population: number,
-    coordinates: number[],
-    iso2: string
+  country: string;
+  population: number;
+  coordinates: number[];
+  iso2: string;
+  width: number;
+  height: number;
+}
+
+interface IMapCenter {
+  lat: number;
+  lng: number;
+  altitude: number;
 }
 
 function GlobeComponent(props: props) {
   const globeEl = useRef<GlobeMethods>();
   const [countries, setCountries] = useState<any>(countryData);
+  const [mapCenter, setMapCenter] = useState<IMapCenter>({
+    lat: props.coordinates[0],
+    lng: props.coordinates[1],
+    altitude: 1.5,
+  });
 
-  const altitude: number = 0.1
-  const transitionDuration: number = 4000
+  const altitude: number = 0.1;
+  const transitionDuration: number = 4000;
 
-  const mapCenter = {
-      lat: props.coordinates[0],
-      lng: props.coordinates[1],
-      altitude: 1
-  }
+  const handleClick = () => {
+    if (globeEl.current) {
+      globeEl.current.pointOfView(mapCenter, transitionDuration);
+    }
+  };
 
   useEffect(() => {
     // load data
-    console.log(mapCenter)
     if (globeEl.current) {
-        globeEl.current.pointOfView(mapCenter, transitionDuration);
+      globeEl.current.pointOfView(mapCenter, transitionDuration);
     }
-  }, [altitude, props.coordinates]);
+  }, [mapCenter, altitude, props.coordinates]);
 
   return (
-      <div className="globe mx-auto p-5">
-        <Globe
-          ref={globeEl}
-          polygonAltitude={altitude}
-          polygonsTransitionDuration={transitionDuration}
-          polygonsData={countries.features.filter(
-            (d: country) => {
-              return d.properties.ISO_A2 === props.iso2}
-          )}
-          polygonCapColor={() => "rgba(255, 255, 255, 0.7)"}
-          polygonSideColor={() => "rgba(255, 255, 255, 0.15)"}
-          backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
-          animateIn={false}
-          showAtmosphere={false}
-          globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-          width={500}
-          height={500}
-          arcStartLat={43}
-          arcStartLng={43}
-        />
-      </div>
+    <div className="globe mx-auto">
+      <Globe
+        ref={globeEl}
+        polygonAltitude={altitude}
+        polygonsTransitionDuration={transitionDuration}
+        polygonsData={countries.features.filter((d: country) => {
+          return d.properties.ISO_A2 === props.iso2;
+        })}
+        polygonCapColor={() => "rgba(255, 255, 255, 0.7)"}
+        polygonSideColor={() => "rgba(255, 255, 255, 0.15)"}
+        backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+        animateIn={false}
+        showAtmosphere={false}
+        // during the day have the globe not night but otherwise night mode
+        globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+        arcStartLat={43}
+        arcStartLng={43}
+        width={props.width}
+        height={props.height}
+        onPolygonClick={handleClick}
+      />
+    </div>
   );
 }
 

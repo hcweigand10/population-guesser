@@ -33,7 +33,7 @@ const Daily = () => {
     }, [score, now]);
 
     return (
-        <div className="daily mx-auto max-w-4xl">
+        <div className="daily mx-auto w-full md:max-w-5xl">
             <Game
                 country={country}
                 setCountry={setCountry}
@@ -41,7 +41,7 @@ const Daily = () => {
                 setScore={setScore}
             />
             {score > 0 && (
-                <p>Come back tomorrow to play the next daily challenge!</p>
+                <h1>Come back tomorrow to play the next daily challenge!</h1>
             )}
         </div>
     );
