@@ -73,7 +73,6 @@ const countryList = [
     "South Korea",
     "Kuwait",
     "Kyrgyzstan",
-    "Laos",
     "Latvia",
     "Lebanon",
     "Libya",

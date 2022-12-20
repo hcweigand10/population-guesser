@@ -1,11 +1,11 @@
-import React, { useState, useEffect, SetStateAction } from "react";
+import React, { useState, useEffect, useContext, SetStateAction } from "react";
 import { useQuery } from "react-query";
 import fetchCountryData from "../../utils/axios";
 import countryList from "../../utils/countryList";
 import GlobeComponent from "../globe";
 import Loading from "../loading";
 import ScoreDisplay from "../scoreDisplay";
-import { gameProps } from "../../interfaces/interfaces";
+import gameContext from "../../contexts/gameContext";
 import "./game.css";
 
 import Globe from "react-globe.gl";
@@ -13,19 +13,23 @@ import { SizeMe } from "react-sizeme";
 
 const strict = 0.4;
 
-const Game = (props: gameProps) => {
+const Game = () => {
   const [input, setInput] = useState<string>("");
+  const [width, setWidth] = useState(0);
   // const [population, setPopulation] = useState<number>(20);
   // const [iso2, setIso2] = useState<string>("")
   // const [coordinates, setCoordinates] = useState<number[]>([])
+
+  const { country, score, setScore } = useContext(gameContext)
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
-  const { data, isLoading, isSuccess, isError, error } = useQuery({
-    queryKey: [props.country],
-    queryFn: () => fetchCountryData(props.country),
+  const { data, isLoading, isSuccess, isError } = useQuery({
+    queryKey: [country],
+    queryFn: () => fetchCountryData(country),
     // onSuccess: (data): void => {
     //     console.log("success")
     //     setPopulation(data.info[0].population / 1000);
@@ -40,7 +44,7 @@ const Game = (props: gameProps) => {
     if (isSuccess) {
       console.log("check");
       const calculatedScore: number = calculateScore(parseInt(input));
-      props.setScore(calculatedScore);
+      setScore(calculatedScore);
     }
   };
 
@@ -58,7 +62,6 @@ const Game = (props: gameProps) => {
   };
 
   const parent = React.useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
 
   useEffect(() => {
     if (parent.current) {
@@ -68,12 +71,11 @@ const Game = (props: gameProps) => {
 
   return (
     <div className="game border-2 z-0" ref={parent}>
-      <header>
-        <h2>{props.country}</h2>
-        <h2>{isLoading && "loading"}</h2>
+      <div>
+        <h2>{country}</h2>
         {isError && <p>error</p>}
         {isLoading ? <Loading /> : null}
-      </header>
+      </div>
       <SizeMe>
         {({ size }) => (
           <div>
@@ -83,16 +85,15 @@ const Game = (props: gameProps) => {
                   <GlobeComponent
                     width={size.width}
                     height={size.width / (4 / 3)}
-                    country={props.country}
+                    country={country}
                     iso2={data.info[0].iso2}
                     population={data.info[0].population}
                     coordinates={data.coord}
                   />
-                  <h1>test</h1>
                 </div>
                 <div className="flex-1 flex content-center justify-center md:absolute">
-                  {props.score >= 0 ? (
-                    <ScoreDisplay score={props.score} />
+                  {score >= 0 ? (
+                    <ScoreDisplay score={score} />
                   ) : (
                     <form className="bg-gray-200 p-6 " onSubmit={checkGuess}>
                       <h1 className="text-3xl leading-9 tracking-tight my-5">

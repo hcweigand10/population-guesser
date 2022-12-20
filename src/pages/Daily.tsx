@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import moment from "moment";
 import Game from "../components/game";
 import shuffledList from "../utils/shuffledList";
+import gameContext from "../contexts/gameContext";
 
 
 const Daily = () => {
-    const [country, setCountry] = useState<string>("");
-    const [score, setScore] = useState<number>(-1);
+
+    const {country, setCountry, score, setScore } = useContext(gameContext)
 
     const now: string = moment().format("YYYY-MM-DD");
     const daysSinceDec1: number =
@@ -34,12 +35,7 @@ const Daily = () => {
 
     return (
         <div className="daily mx-auto w-full md:max-w-5xl">
-            <Game
-                country={country}
-                setCountry={setCountry}
-                score={score}
-                setScore={setScore}
-            />
+            <Game/>
             {score > 0 && (
                 <h1>Come back tomorrow to play the next daily challenge!</h1>
             )}
