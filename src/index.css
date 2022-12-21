@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-image: url("//unpkg.com/three-globe/example/img/night-sky.png"); */
 }
 
 code {

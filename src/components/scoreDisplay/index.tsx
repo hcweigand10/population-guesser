@@ -10,7 +10,7 @@ const ScoreDisplay = (props: props) => {
     let fraction = props.score > 7 ? `${Math.round(props.score * 12 / 100)}/12` : 0
 
     return (
-        <div className="score-display">
+        <div className="score-display z-0">
             <div className="progress-bar-container mx-auto w-24 bg-white-100 border">
                 <div
                     className={`progress-bar w-${fraction} transition-[width] bg-green-500 h-6`}
