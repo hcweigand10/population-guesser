@@ -7,7 +7,7 @@ const countriesAPI = axios.create({
 })
 
 const fetchCountryData = async (country: string) => {
-
+    console.log(country);
     const response = await countriesAPI.get(`?name=${country}`)
     const latLong = await fetch(`https://restcountries.com/v2/alpha/${response.data[0].iso2}`);
     const latLongData = await latLong.json();

@@ -5,15 +5,27 @@ import countryList from "../../utils/countryList";
 import GlobeComponent from "../globe";
 import Loading from "../loading";
 import ScoreDisplay from "../scoreDisplay";
+<<<<<<< HEAD
 import gameContext from "../../contexts/gameContext";
 import "./game.css";
 
+=======
+import { gameProps } from "../../interfaces/interfaces";
+import "./game.component.scss";
+import moment from "moment";
+>>>>>>> dev
 import Globe from "react-globe.gl";
 import { SizeMe } from "react-sizeme";
-
+import { useLocation } from "react-router-dom";
 const strict = 0.4;
 
+<<<<<<< HEAD
 const Game = () => {
+=======
+const Game = (props: gameProps) => {
+  const location = useLocation();
+  const [mode, setMode] = useState<string>("");
+>>>>>>> dev
   const [input, setInput] = useState<string>("");
   const [width, setWidth] = useState(0);
   // const [population, setPopulation] = useState<number>(20);
@@ -51,13 +63,13 @@ const Game = () => {
   const calculateScore = (guess: number): number => {
     // wow, look at this
     const correctAnswer = data?.info[0].population / 1000;
-    
+
     const result: number =
       100 *
       Math.E **
         (-((10 * strict ** 2) / correctAnswer ** 0.1) *
           (Math.log(correctAnswer) - Math.log(guess)) ** 2);
-    console.log(guess, result)
+    console.log(guess, result);
     return parseInt(result.toFixed(2));
   };
 
@@ -67,20 +79,78 @@ const Game = () => {
     if (parent.current) {
       setWidth(parent?.current.offsetWidth);
     }
+    setMode(location.pathname);
+    // setCountry("United Arab Emirates")
   }, []);
 
+  const newCountry = () => {
+    props.setCountry(countryList[Math.floor(Math.random() * countryList.length)]);
+    props.setScore(-1);
+  };
+
   return (
+<<<<<<< HEAD
     <div className="game border-2 z-0" ref={parent}>
       <div>
         <h2>{country}</h2>
         {isError && <p>error</p>}
         {isLoading ? <Loading /> : null}
       </div>
+=======
+    <div className="game z-0 h-full" ref={parent}>
+>>>>>>> dev
       <SizeMe>
         {({ size }) => (
           <div>
             {data && size.width ? (
-              <div className="game-container flex mx-auto flex-col lg:flex-row static">
+              <div className="game-container flex m-auto flex-col static">
+                <div className="flex-1 flex content-center justify-center">
+                  {props.score >= 0 ? (
+                    <div className="flex flex-col">
+                    <h1 className="text-3xl leading-9 tracking-tight my-5 text-white">
+                        {props.country}
+                      </h1>
+                    <ScoreDisplay score={props.score} />
+                    </div>
+                  ) : (
+                    <form className=" py-1 " onSubmit={checkGuess}>
+                      <h1 className="text-3xl leading-9 tracking-tight my-5 text-white">
+                        {props.country}
+                      </h1>
+                      <h2>{isLoading && "loading"}</h2>
+                      {isError && <p>{`${error}`}</p>}
+                      {isLoading ? <Loading /> : null}
+                      <div className="my-5">
+                        <input
+                          value={input}
+                          onChange={handleInputChange}
+                          type="text"
+                          className="py-3 px-8 shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400"
+                          placeholder="Guess here! (in millions)"
+                        ></input>
+                        <div className="flex flex-row gap-3">
+                        <button
+                          type="submit"
+                          className="shadow-2xl my-button mx-auto py-3 px-8 bg-blue-700 my-5 flex justify-center items-center rounded-full cursor-pointer relative overflow-hidden font-bold uppercase tracking-wider text-white focus:outline-none"
+                        >
+                          Submit Guess
+                        </button>
+                        {mode === "/practice" ? (
+                          <button
+                            type="button"
+                            className="shadow-2xl my-button mx-auto py-3 px-8 bg-blue-700 my-5 flex justify-center items-center rounded-full cursor-pointer relative overflow-hidden font-bold uppercase tracking-wider text-white focus:outline-none"
+                            onClick={newCountry}
+                          >
+                            New Country
+                          </button>
+                        ) : (
+                          ""
+                        )}
+                        </div>
+                      </div>
+                    </form>
+                  )}
+                </div>
                 <div className="flex-1">
                   <GlobeComponent
                     width={size.width}
@@ -90,6 +160,7 @@ const Game = () => {
                     population={data.info[0].population}
                     coordinates={data.coord}
                   />
+<<<<<<< HEAD
                 </div>
                 <div className="flex-1 flex content-center justify-center md:absolute">
                   {score >= 0 ? (
@@ -114,6 +185,8 @@ const Game = () => {
                       </button>
                     </form>
                   )}
+=======
+>>>>>>> dev
                 </div>
               </div>
             ) : null}

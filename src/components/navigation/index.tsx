@@ -12,14 +12,14 @@ const Navbar = () => {
   const { userInfo } = useContext(userContext);
 
   return (
-    <>
+    <div>
       {/* This example requires Tailwind CSS v2.0+ */}
-      <div className="relative bg-white">
+      <div className="relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-              <a href="#test">
-                <span className="sr-only">Workflow</span>
+              <a href="/">
+                <span className="sr-only">Logo</span>
                 <img
                   className="h-8 w-auto sm:h-10"
                   src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
@@ -52,24 +52,23 @@ const Navbar = () => {
                 </svg>
               </button>
             </div>
-            <nav className="hidden md:flex space-x-10">
-              <div className="relative"></div>
+            <nav className="hidden md:flex space-x-10 flex-1 justify-center">
 
               <Link
                 to="/"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
+                className="text-base font-medium text-white hover:text-indigo-700"
               >
                 Home
               </Link>
               <Link
                 to="/practice"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
+                className="text-base font-medium text-white hover:text-indigo-700"
               >
                 Practice
               </Link>
               <Link
                 to="/about"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
+                className="text-base font-medium text-white hover:text-indigo-700"
               >
                 About
               </Link>
@@ -189,7 +188,7 @@ const Navbar = () => {
         </div>
       </div>
       <Outlet />
-    </>
+    </div>
   );
 };
 
