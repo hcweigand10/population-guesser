@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import {
     GoogleOAuthProvider,
     GoogleLogin,
-    useGoogleLogin,
     googleLogout,
 } from "@react-oauth/google";
 import userContext from "../../contexts/userContext";
@@ -22,18 +21,11 @@ const GoogleAuth = () => {
         console.log("google error");
     };
 
-    const success = () => {
-        console.log("script load success");
-    };
-
-   
-
     return (
         <div className="card flex justify-content-center">
             <GoogleOAuthProvider
                 clientId={process.env.REACT_APP_CLIENT_ID || ""}
                 onScriptLoadError={error}
-                onScriptLoadSuccess={success}
             >
                 <GoogleLogin
                     onSuccess={responseGoogle}
@@ -41,7 +33,6 @@ const GoogleAuth = () => {
                     useOneTap
                     auto_select
                 ></GoogleLogin>
-                {/* <GoogleLoginBtn/> */}
             </GoogleOAuthProvider>
         </div>
     );
