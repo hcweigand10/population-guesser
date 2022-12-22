@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
+import userContext from "../../contexts/userContext";
 import GoogleAuth from "../googleAuth";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faCaretDown} from "@fortawesome/free-solid-svg-icons"
 
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
+
+  const { userInfo } = useContext(userContext);
 
   return (
     <>
@@ -68,10 +73,21 @@ const Navbar = () => {
               >
                 About
               </Link>
-              
             </nav>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-              <GoogleAuth/>
+              {userInfo.name ? (
+                <button className="flex items-center p-1.5 rounded">
+                  <p className="mr-1 italic text-sm text-slate-400">Hi {userInfo.name.split(" ")[0]}!</p>
+                  <img
+                    className="rounded-full w-10"
+                    src={userInfo.pic || ""}
+                    alt="profile pic"
+                  />
+                  {/* <FontAwesomeIcon icon={faCaretDown}/> */}
+                </button>
+              ) : (
+                <GoogleAuth />
+              )}
             </div>
           </div>
         </div>
@@ -131,24 +147,24 @@ const Navbar = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                <Link
-                to="/"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                Home
-              </Link>
-              <Link
-                to="/practice"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                Practice
-              </Link>
-              <Link
-                to="/about"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                About
-              </Link>
+                  <Link
+                    to="/"
+                    className="text-base font-medium text-gray-500 hover:text-gray-900"
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    to="/practice"
+                    className="text-base font-medium text-gray-500 hover:text-gray-900"
+                  >
+                    Practice
+                  </Link>
+                  <Link
+                    to="/about"
+                    className="text-base font-medium text-gray-500 hover:text-gray-900"
+                  >
+                    About
+                  </Link>
                 </nav>
               </div>
             </div>
@@ -166,7 +182,7 @@ const Navbar = () => {
                     Sign in
                   </a>
                 </p> */}
-                <GoogleAuth/>
+                <GoogleAuth />
               </div>
             </div>
           </div>
