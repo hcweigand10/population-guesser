@@ -1,0 +1,64 @@
+.my-button::before {
+    content: "";
+    position: absolute;
+    margin: auto;
+    width: 0%;
+    height: 0%;
+    background: #3B82F6;
+    transition: 0.5s ease-out;
+    border-radius: 100% 100% 100% 100%;
+    opacity: 0%;
+  }
+  
+  .my-button:hover:before {
+    width: 500px;
+    height: 500px;
+    transition: 0.5s ease-out;
+    border-radius: 0;
+    animation: opacity-in .7s forwards ease-out;
+  }
+  
+  .my-button:hover {
+    animation: bouncerino-in .5s forwards alternate ease-out;
+  }
+  .my-button:hover:p {
+    transform: scale(5);
+    transition: 0.7s ease-out;
+  }
+  
+  
+  .my-button {
+    animation: bouncerino-out .5s;
+  }
+  @keyframes bouncerino-in {
+    100% {
+      transform: scale(1.075);
+    }
+    70% {
+      transform: scale(1.08);
+    }
+    50% {
+      transform: scale(1.075);
+    }
+    40% {
+      transform: scale(1.09);
+    }
+  }
+  
+  @keyframes bouncerino-out {
+    100% {
+      transform: scale(1.0);
+    }
+    0% {
+      transform: scale(1.075);
+    }
+  }
+  
+  @keyframes opacity-in {
+    from {
+      opacity: 100%;
+    }
+    to {
+      opacity: 0%;
+    }
+  }
