@@ -1,33 +1,38 @@
-import React, { useState, useEffect, SetStateAction } from "react";
+import React, { useState, useEffect, useContext, SetStateAction } from "react";
 import { useQuery } from "react-query";
 import fetchCountryData from "../../utils/axios";
 import countryList from "../../utils/countryList";
 import GlobeComponent from "../globe";
 import Loading from "../loading";
 import ScoreDisplay from "../scoreDisplay";
-import { gameProps } from "../../interfaces/interfaces";
+import gameContext from "../../contexts/gameContext";
 import "./game.component.scss";
 import moment from "moment";
+
 import Globe from "react-globe.gl";
 import { SizeMe } from "react-sizeme";
 import { useLocation } from "react-router-dom";
 const strict = 0.4;
 
-const Game = (props: gameProps) => {
+const Game = () => {
   const location = useLocation();
   const [mode, setMode] = useState<string>("");
   const [input, setInput] = useState<string>("");
+  const [width, setWidth] = useState(0);
   // const [population, setPopulation] = useState<number>(20);
   // const [iso2, setIso2] = useState<string>("")
   // const [coordinates, setCoordinates] = useState<number[]>([])
+
+  const { country, setCountry, score, setScore } = useContext(gameContext)
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
-  const { data, isLoading, isSuccess, isError, error } = useQuery({
-    queryKey: [props.country],
-    queryFn: () => fetchCountryData(props.country),
+  const { data, isLoading, isSuccess, isError } = useQuery({
+    queryKey: [country],
+    queryFn: () => fetchCountryData(country),
     // onSuccess: (data): void => {
     //     console.log("success")
     //     setPopulation(data.info[0].population / 1000);
@@ -42,7 +47,7 @@ const Game = (props: gameProps) => {
     if (isSuccess) {
       console.log("check");
       const calculatedScore: number = calculateScore(parseInt(input));
-      props.setScore(calculatedScore);
+      setScore(calculatedScore);
     }
   };
 
@@ -60,7 +65,6 @@ const Game = (props: gameProps) => {
   };
 
   const parent = React.useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
 
   useEffect(() => {
     if (parent.current) {
@@ -71,32 +75,48 @@ const Game = (props: gameProps) => {
   }, []);
 
   const newCountry = () => {
-    props.setCountry(countryList[Math.floor(Math.random() * countryList.length)]);
-    props.setScore(-1);
+    setCountry(countryList[Math.floor(Math.random() * countryList.length)]);
+    setScore(-1);
   };
 
   return (
-    <div className="game z-0 h-full" ref={parent}>
+    <div className="game border-2 z-0" ref={parent}>
+      <div>
+        <h2>{country}</h2>
+        {isError && <p>error</p>}
+        {isLoading ? <Loading /> : null}
+      </div>
       <SizeMe>
         {({ size }) => (
           <div>
             {data && size.width ? (
               <div className="game-container flex m-auto flex-col static">
                 <div className="flex-1 flex content-center justify-center">
-                  {props.score >= 0 ? (
+                  {score >= 0 ? (
                     <div className="flex flex-col">
                     <h1 className="text-3xl leading-9 tracking-tight my-5 text-white">
-                        {props.country}
+                        {country}
                       </h1>
-                    <ScoreDisplay score={props.score} />
+                    <ScoreDisplay score={score} />
+                    {mode === "/practice" ? (
+                          <button
+                            type="button"
+                            className="shadow-2xl my-button mx-auto py-3 px-8 bg-blue-700 my-5 flex justify-center items-center rounded-full cursor-pointer relative overflow-hidden font-bold uppercase tracking-wider text-white focus:outline-none"
+                            onClick={newCountry}
+                          >
+                            New Country
+                          </button>
+                        ) : (
+                          <h3>Come back tomorrow for the next country!</h3>
+                        )}
                     </div>
                   ) : (
                     <form className=" py-1 " onSubmit={checkGuess}>
                       <h1 className="text-3xl leading-9 tracking-tight my-5 text-white">
-                        {props.country}
+                        {country}
                       </h1>
                       <h2>{isLoading && "loading"}</h2>
-                      {isError && <p>{`${error}`}</p>}
+                      {isError && <p>api error</p>}
                       {isLoading ? <Loading /> : null}
                       <div className="my-5">
                         <input
@@ -122,7 +142,7 @@ const Game = (props: gameProps) => {
                             New Country
                           </button>
                         ) : (
-                          ""
+                          null
                         )}
                         </div>
                       </div>
@@ -133,9 +153,7 @@ const Game = (props: gameProps) => {
                   <GlobeComponent
                     width={size.width}
                     height={size.width / (4 / 3)}
-                    country={props.country}
                     iso2={data.info[0].iso2}
-                    population={data.info[0].population}
                     coordinates={data.coord}
                   />
                 </div>

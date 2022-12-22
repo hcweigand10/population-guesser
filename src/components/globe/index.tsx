@@ -16,8 +16,6 @@ interface globeRef {
 }
 
 interface props {
-  country: string;
-  population: number;
   coordinates: number[];
   iso2: string;
   width: number;
@@ -105,7 +103,7 @@ function GlobeComponent(props: props) {
         showAtmosphere={true}
         // during the day have the globe not night but otherwise night mode
         globeImageUrl={
-          false
+          isDay
             ? "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
             : "//unpkg.com/three-globe/example/img/earth-night.jpg"
         }
