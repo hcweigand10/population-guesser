@@ -7,12 +7,12 @@ import gameContext from "../contexts/gameContext";
 
 const Daily = () => {
 
-    const {country, setCountry, score, setScore } = useContext(gameContext)
+  const {country, setCountry, score, setScore } = useContext(gameContext)
 
-  const now: string = moment().format("YYYY-MM-DD");
-  const daysSinceDec1: number =
-    parseInt(moment("2022-12-01", "YYYY-MM-DD").fromNow().split(" ")[0]) %
-    shuffledList.length;
+  const now: string = moment().format("YYYY-MM-DD")
+
+  //Difference in number of day
+  const daysSinceDec1: number = moment(moment().format("YYYY-MM-DD")).diff(moment("2022-12-01", "YYYY-MM-DD"), 'days');
 
   useEffect(() => {
     setCountry(shuffledList[daysSinceDec1]);
@@ -34,7 +34,7 @@ const Daily = () => {
   }, [score, now]);
 
     return (
-        <div className="daily mx-auto w-full md:max-w-5xl">
+        <div className="daily mx-auto w-full md:max-w-2xl">
             <Game/>
             {score > 0 && (
                 <h1>Come back tomorrow to play the next daily challenge!</h1>

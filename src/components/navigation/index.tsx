@@ -3,8 +3,6 @@ import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import userContext from "../../contexts/userContext";
 import GoogleAuth from "../googleAuth";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faCaretDown} from "@fortawesome/free-solid-svg-icons"
 
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -12,8 +10,7 @@ const Navbar = () => {
   const { userInfo } = useContext(userContext);
 
   return (
-    <div>
-      {/* This example requires Tailwind CSS v2.0+ */}
+    <div className="max-h-screen w-screen overflow-auto m-auto">
       <div className="relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
@@ -34,7 +31,6 @@ const Navbar = () => {
                 onClick={() => setOpen(!open)}
               >
                 <span className="sr-only">Open menu</span>
-                {/* Heroicon name: outline/menu */}
                 <svg
                   className="h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
@@ -56,19 +52,19 @@ const Navbar = () => {
 
               <Link
                 to="/"
-                className="text-base font-medium text-white hover:text-indigo-700"
+                className="text-base font-medium text-white transition linear delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
               >
                 Home
               </Link>
               <Link
                 to="/practice"
-                className="text-base font-medium text-white hover:text-indigo-700"
+                className="text-base font-medium text-white transition linear delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
               >
                 Practice
               </Link>
               <Link
                 to="/about"
-                className="text-base font-medium text-white hover:text-indigo-700"
+                className="text-base font-medium text-white transition linear delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
               >
                 About
               </Link>
@@ -82,7 +78,6 @@ const Navbar = () => {
                     src={userInfo.pic || ""}
                     alt="profile pic"
                   />
-                  {/* <FontAwesomeIcon icon={faCaretDown}/> */}
                 </button>
               ) : (
                 <GoogleAuth />
@@ -90,16 +85,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        {/*
-    Mobile menu, show/hide based on mobile menu state.
 
-    Entering: "duration-200 ease-out"
-      From: ""
-      To: ""
-    Leaving: "duration-100 ease-in"
-      From: "opacity-100 scale-100"
-      To: "opacity-0 scale-95"
-  */}
 
         <div
           className={
@@ -125,7 +111,6 @@ const Navbar = () => {
                     onClick={() => setOpen(!open)}
                   >
                     <span className="sr-only">Close menu</span>
-                    {/* Heroicon name: outline/x */}
                     <svg
                       className="h-6 w-6"
                       xmlns="http://www.w3.org/2000/svg"
@@ -169,18 +154,6 @@ const Navbar = () => {
             </div>
             <div className="py-6 px-5 space-y-6">
               <div>
-                {/* <a
-                  href="www.google.com"
-                  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                >
-                  Sign up
-                </a>
-                <p className="mt-6 text-center text-base font-medium text-gray-500">
-                  Existing customer?
-                  <a href="#" className="text-indigo-600 hover:text-indigo-500">
-                    Sign in
-                  </a>
-                </p> */}
                 <GoogleAuth />
               </div>
             </div>
