@@ -24,12 +24,12 @@ const ScoreDisplay = (props: props) => {
       }
     }, 25);
     setTimeout(() => {
-      if (percentage > props.score/2 && percentage < props.score*0.75) {
+      if (percentage >= props.score/2 && percentage < props.score*0.75) {
         setPercentage(percentage + 1);
       }
     }, 50);
     setTimeout(() => {
-      if (percentage > props.score*0.75 && percentage < props.score) {
+      if (percentage >= props.score*0.75 && percentage < props.score) {
         setPercentage(percentage + 1);
       }
     }, 100);
