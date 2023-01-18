@@ -6,7 +6,7 @@ import Practice from "./pages/Practice";
 import About from "./pages/About";
 import Navigation from "./components/navigation";
 import UserContext from "./contexts/userContext";
-import { userInfo} from "./interfaces/interfaces";
+import { userInfo } from "./interfaces/interfaces";
 import GameContext from "./contexts/gameContext";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
     <UserContext.Provider value={{ userInfo, setUserInfo }}>
       <GameContext.Provider value={{ country, setCountry, score, setScore }}>
         <Routes>
-          <Route path="/" element={<Navigation />}>
+          <Route path="*" element={<Navigation />}>
             <Route index={true} element={<Daily />} />
             <Route path="practice" element={<Practice />} />
             <Route path="about" element={<About />} />
