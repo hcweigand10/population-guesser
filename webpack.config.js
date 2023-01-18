@@ -6,34 +6,81 @@ const Dotenv = require("dotenv-webpack")
 const postcssPresetEnv = require("postcss-preset-env");
 const tailwindcss = require("tailwindcss");
 
+// module.exports = env => {
+//   return {
+//     entry: path.join(__dirname, "src", "index.tsx"),
+//     output: {
+//       path: path.resolve(__dirname, "./dist"),
+//       filename: "bundle.js",
+//     },
+//     devServer: {
+//       static: path.resolve(__dirname, "./dist"),
+//       hot: true,
+//       historyApiFallback: true,
+//     },
+//     mode: "development",
+//     module: {
+//       rules: [
+//         {
+//           test: /\.(js|jsx|ts|tsx)$/,
+//           use: [
+//             {
+//               test: /\.(js|jsx|ts|tsx)$/,
+//               exclude: /node_modules/,
+//               use: ["babel-loader"],
+//             },
+//             {
+//               loader: "ts-loader",
+//             },
+//           ],
+//           exclude: /node_modules/,
+//         },
+//         {
+//           test: /\.css$/i,
+//           use: [
+//             "style-loader",
+//             "css-loader",
+//             {
+//               loader: "postcss-loader",
+//               options: {
+//                 postcssOptions: {
+//                   plugins: [
+//                     [
+//                       "postcss-preset-env",
+//                       tailwindcss("./tailwind.config.js"),
+//                     ],
+//                   ],
+//                 },
+//               },
+//             },
+//           ],
+//         },
+//       ],
+//     },
+//     resolve: {
+//       extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
+//     },
+//     plugins: [
+//       new webpack.HotModuleReplacementPlugin(),
+//       new HtmlWebpackPlugin({
+//         template: path.join(__dirname, "public", "index.html"),
+//       }),
+//       new MiniCssExtractPlugin(),
+//       new Dotenv(),
+//     ],
+//   }
+// };
+
+// test
+
 module.exports = {
-  entry: path.join(__dirname, "src", "index.tsx"),
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
-  },
-  mode: "development",
+  entry: path.resolve(__dirname, "./src/index.tsx"),
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                "@babel/preset-env",
-                "@babel/preset-react",
-                "@babel/preset-typescript",
-              ],
-              plugins: ["@babel/plugin-proposal-class-properties"],
-            },
-          },
-          {
-            loader: "ts-loader",
-          },
-        ],
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
+        use: ["babel-loader"],
       },
       {
         test: /\.css$/i,
@@ -45,10 +92,7 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: [
-                  [
-                    "postcss-preset-env",
-                    tailwindcss("./tailwind.config.js"),
-                  ],
+                  ["postcss-preset-env", tailwindcss("./tailwind.config.js")],
                 ],
               },
             },
@@ -58,25 +102,26 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
+  },
+  output: {
+    path: path.resolve(__dirname, "./dist"),
+    filename: "bundle.js",
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin(),
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "public", "index.html"),
     }),
-    new MiniCssExtractPlugin(),
     new webpack.ProvidePlugin({
-      process: 'process/browser',
-    }),
-    // new webpack.EnvironmentPlugin({
-    //   NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
-    //   DEBUG: false,
-    // }),
-    new Dotenv({
-      path: './.env', // Path to .env file (this is the default)
-      safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
-    })
+      "React": "react",
+   }),
   ],
+  devServer: {
+    static: path.resolve(__dirname, "./dist"),
+    hot: true,
+    historyApiFallback: true,
+  },
 };
-
-// test
