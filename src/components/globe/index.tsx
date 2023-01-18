@@ -35,15 +35,15 @@ function GlobeComponent(props: props) {
   const [mapCenter, setMapCenter] = useState<IMapCenter>({
     lat: props.coordinates[0],
     lng: props.coordinates[1],
-    altitude: 1.5,
+    altitude: 2,
   });
 
-  const altitude: number = 0.1;
+  const altitude: number = 0.2;
   const transitionDuration: number = 4000;
 
   const handleClick = () => {
     if (globeEl.current) {
-      globeEl.current.pointOfView(mapCenter, 2000);
+      globeEl.current.pointOfView({ ...mapCenter, altitude: 1 }, 2000);
     }
   };
 
@@ -107,8 +107,8 @@ function GlobeComponent(props: props) {
             ? "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
             : "//unpkg.com/three-globe/example/img/earth-night.jpg"
         }
-        arcStartLat={43}
-        arcStartLng={43}
+        arcStartLat={42}
+        arcStartLng={42}
         width={props.width}
         height={props.height}
         onPolygonClick={handleClick}
