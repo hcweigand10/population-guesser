@@ -6,7 +6,7 @@ import Practice from "./pages/Practice";
 import About from "./pages/About";
 import Navigation from "./components/navigation";
 import UserContext from "./contexts/userContext";
-import { userInfo, userContext, gameProps } from "./interfaces/interfaces";
+import { userInfo} from "./interfaces/interfaces";
 import GameContext from "./contexts/gameContext";
 
 function App() {
