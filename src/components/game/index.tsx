@@ -6,7 +6,7 @@ import GlobeComponent from "../globe";
 import Loading from "../loading";
 import ScoreDisplay from "../scoreDisplay";
 import gameContext from "../../contexts/gameContext";
-import "./game.component.scss";
+import "./game.component.css";
 import moment from "moment";
 import Modal from "../modal/modal";
 
