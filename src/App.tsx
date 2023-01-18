@@ -18,6 +18,8 @@ function App() {
   const [country, setCountry] = useState<string>("");
   const [score, setScore] = useState<number>(-1);
 
+  console.log(process.env.REACT_APP_CLIENT_ID)
+
   return (
     <UserContext.Provider value={{ userInfo, setUserInfo }}>
       <GameContext.Provider value={{ country, setCountry, score, setScore }}>

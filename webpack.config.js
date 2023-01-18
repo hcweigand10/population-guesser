@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack")
+const Dotenv = require("dotenv-webpack")
 const postcssPresetEnv = require("postcss-preset-env");
 const tailwindcss = require("tailwindcss");
 
@@ -67,6 +68,14 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
+    // new webpack.EnvironmentPlugin({
+    //   NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
+    //   DEBUG: false,
+    // }),
+    new Dotenv({
+      path: './.env', // Path to .env file (this is the default)
+      safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
+    })
   ],
 };
 
