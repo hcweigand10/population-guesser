@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack")
 const postcssPresetEnv = require("postcss-preset-env");
 const tailwindcss = require("tailwindcss");
 
@@ -63,6 +64,9 @@ module.exports = {
       template: path.join(__dirname, "public", "index.html"),
     }),
     new MiniCssExtractPlugin(),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
   ],
 };
 
