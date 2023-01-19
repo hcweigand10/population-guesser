@@ -1,24 +1,24 @@
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import { QueryClient, QueryClientProvider } from "react-query"
-import { ReactQueryDevtools } from "react-query/devtools"
-import { BrowserRouter } from "react-router-dom"
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { BrowserRouter } from "react-router-dom";
+const queryClient = new QueryClient();
 import React from 'react';
-const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
 root.render(
-  <div className='app'>
-  <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-    {/* <ReactQueryDevtools/> */}
-  </QueryClientProvider>
+  <div className="app">
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   </div>
 );
 

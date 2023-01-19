@@ -28,6 +28,7 @@ function App() {
             <Route index={true} element={<Daily />} />
             <Route path="practice" element={<Practice />} />
             <Route path="about" element={<About />} />
+            <Route path="*" element={<h2>Page Not Found</h2>} />
           </Route>
         </Routes>
       </GameContext.Provider>
