@@ -68,6 +68,12 @@ const Navbar = () => {
               >
                 About
               </Link>
+              <Link
+                to="/stats"
+                className="text-base font-medium text-white transition linear delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+              >
+                Stats
+              </Link>
             </nav>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
               {userInfo.name ? (
@@ -148,6 +154,12 @@ const Navbar = () => {
                     className="text-base font-medium text-gray-500 hover:text-gray-900"
                   >
                     About
+                  </Link>
+                  <Link
+                    to="/stats"
+                    className="text-base font-medium text-gray-500 hover:text-gray-900"
+                  >
+                    Stats
                   </Link>
                 </nav>
               </div>
