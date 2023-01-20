@@ -187,10 +187,13 @@ const Game = () => {
                 iso2={data.info[0].iso2}
                 coordinates={data.coord}
               />
-              <div className="text-white p-2">
-                Guess the population of the country displayed on the globe.This
+              {mode === "/practice" ? <div className="text-white p-2">
+                Guess the population of the country displayed on the globe. This
                 is practice mode so you can try multiple times
-              </div>
+              </div> : <div className="text-white p-2">
+                You've already attempted today's country. Come back tomorrow for a new one!
+              </div>}
+              
             </div>
           ) : (
             <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">

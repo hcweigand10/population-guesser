@@ -15,3 +15,8 @@ export type userContext = {
   userInfo: userInfo,
   setUserInfo: React.Dispatch<React.SetStateAction<userInfo>>,
 }
+
+export interface score  {
+  date: string,
+  score: number
+}

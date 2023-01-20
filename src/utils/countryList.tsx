@@ -7,8 +7,6 @@ const countryList = [
     "Armenia",
     "Australia",
     "Austria",
-    "Bahamas",
-    "Bahrain",
     "Bangladesh",
     "Belarus",
     "Belgium",
