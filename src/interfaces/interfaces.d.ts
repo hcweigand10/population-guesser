@@ -1,8 +1,12 @@
+import { Dispatch, SetStateAction } from "react"
+
 export interface gameProps {
     country: string,
     setCountry: Dispatch<SetStateAction<string>>,
     score: number,
-    setScore: Dispatch<SetStateAction<string>>
+    setScore: Dispatch<SetStateAction<number>>,
+    guess: number,
+    setGuess: Dispatch<SetStateAction<number>>,
 }
 
 export interface userInfo {
@@ -13,7 +17,7 @@ export interface userInfo {
 
 export type userContext = {
   userInfo: userInfo,
-  setUserInfo: React.Dispatch<React.SetStateAction<userInfo>>,
+  setUserInfo: Dispatch<SetStateAction<userInfo>>,
 }
 
 export interface score  {

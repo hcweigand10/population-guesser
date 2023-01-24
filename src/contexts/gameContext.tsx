@@ -5,5 +5,7 @@ export default React.createContext<gameProps>({
   country: "",
   setCountry: () => {},
   score: -1,
-  setScore: () => {}
+  setScore: () => {},
+  guess: -1,
+  setGuess: () => {}
 });

@@ -7,7 +7,6 @@ import Loading from "../loading";
 import ScoreDisplay from "../scoreDisplay";
 import gameContext from "../../contexts/gameContext";
 import "./game.component.css";
-import moment from "moment";
 import Modal from "../modal/modal";
 
 import Globe from "react-globe.gl";
@@ -26,7 +25,8 @@ const Game = () => {
   // const [iso2, setIso2] = useState<string>("")
   // const [coordinates, setCoordinates] = useState<number[]>([])
 
-  const { country, setCountry, score, setScore } = useContext(gameContext);
+  const { country, setCountry, score, setScore, setGuess } =
+    useContext(gameContext);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -46,13 +46,13 @@ const Game = () => {
   const checkGuess = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isSuccess) {
-      console.log("check");
-      const calculatedScore: number = calculateScore(parseInt(input));
+      setGuess(parseFloat(input));
+      const calculatedScore: number = calculateScore(parseFloat(input));
       setScore(calculatedScore);
+      setInput("");
     }
   };
 
-  
   const handleModal = () => {
     console.log("test");
     setModalStatus(!modalStatus);
@@ -75,7 +75,6 @@ const Game = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log("inital timeout");
       setRender(true);
     }, 5000);
     if (parent.current) {
@@ -89,6 +88,7 @@ const Game = () => {
     setCountry(countryList[Math.floor(Math.random() * countryList.length)]);
     setScore(-1);
   };
+
   return (
     <div
       className="game z-0 flex justify-center content-center"
@@ -131,7 +131,7 @@ const Game = () => {
                     <h1 className="text-3xl leading-9 tracking-tight mt-2 text-white">
                       {country}
                     </h1>
-                    <ScoreDisplay score={score} />
+                    <ScoreDisplay correct={data?.info[0].population / 1000} />
                     {mode === "/practice" ? (
                       <button
                         type="button"
@@ -140,9 +140,7 @@ const Game = () => {
                       >
                         New Country
                       </button>
-                    ) : (
-                      <h3>Come back tomorrow for the next country!</h3>
-                    )}
+                    ) : null}
                   </div>
                 ) : (
                   <form onSubmit={checkGuess}>
@@ -187,13 +185,16 @@ const Game = () => {
                 iso2={data.info[0].iso2}
                 coordinates={data.coord}
               />
-              {mode === "/practice" ? <div className="text-white p-2">
-                Guess the population of the country displayed on the globe. This
-                is practice mode so you can try multiple times
-              </div> : <div className="text-white p-2">
-                You've already attempted today's country. Come back tomorrow for a new one!
-              </div>}
-              
+              {mode === "/practice" ? (
+                <div className="text-white p-2">
+                  Guess the population of the country displayed on the globe.
+                  This is practice mode so you can try multiple times
+                </div>
+              ) : (
+                <h1 className="text-white text-center my-0">
+                  Come back tomorrow to play the next daily challenge!
+                </h1>
+              )}
             </div>
           ) : (
             <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">
