@@ -18,10 +18,11 @@ function App() {
   });
   const [country, setCountry] = useState<string>("");
   const [score, setScore] = useState<number>(-1);
+  const [guess, setGuess] = useState<number>(-1);
 
   return (
     <UserContext.Provider value={{ userInfo, setUserInfo }}>
-      <GameContext.Provider value={{ country, setCountry, score, setScore }}>
+      <GameContext.Provider value={{ country, setCountry, score, setScore, guess, setGuess }}>
         <Routes>
           <Route path="*" element={<Navigation />}>
             <Route index={true} element={<Daily />} />
