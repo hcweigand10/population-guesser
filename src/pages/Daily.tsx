@@ -4,43 +4,73 @@ import Game from "../components/game";
 import shuffledList from "../utils/shuffledList";
 import gameContext from "../contexts/gameContext";
 
-
 const Daily = () => {
+  const { country, setCountry, score, setScore, guess, setGuess } =
+    useContext(gameContext);
 
-  const {country, setCountry, score, setScore } = useContext(gameContext)
-
-  const now: string = moment().format("YYYY-MM-DD")
+  const now: string = moment().format("YYYY-MM-DD");
 
   //Difference in number of day
-  const daysSinceDec1: number = moment(moment().format("YYYY-MM-DD")).diff(moment("2022-12-01", "YYYY-MM-DD"), 'days');
+  const daysSinceDec1: number = moment(moment().format("YYYY-MM-DD")).diff(
+    moment("2022-12-01", "YYYY-MM-DD"),
+    "days"
+  );
 
   useEffect(() => {
     setCountry(shuffledList[daysSinceDec1]);
-    const storedScore = localStorage.getItem(now);
-    if (typeof storedScore === "string") {
-      setScore(JSON.parse(storedScore).score);
-    }
+    const storedScores = JSON.parse(localStorage.getItem("scores") || "null");
+    // if (storedScores) {
+    //   const latestScore = storedScores.pop()
+    //   if (latestScore.date === now) {
+    //     setScore(parseFloat(latestScore.score))
+    //     console.log(latestScore.score)
+    //     setGuess(parseFloat(latestScore.guess))
+    //   }
+    // }
   }, [daysSinceDec1, now]);
 
   useEffect(() => {
-    if (score > 0) {
-      localStorage.setItem(
-        now,
-        JSON.stringify({
-          score: score.toString(),
-        })
-      );
+    const storedScores = JSON.parse(localStorage.getItem("scores") || "null");
+    // check if user has guessed
+
+    // check if previous scores exist, if not create new array
+    if (storedScores) {
+      // check if today's score has been added
+      const latestScore = storedScores[storedScores.length - 1];
+      if (latestScore.date !== now) {
+        if (score > 0) {
+          localStorage.setItem(
+            "scores",
+            JSON.stringify([
+              ...storedScores,
+              { date: now, score: score, guess: guess },
+            ])
+          );
+        }
+      } else {
+        setScore(latestScore.score)
+        setGuess(latestScore.guess)
+      }
+    } else {
+      if (score > 0) {
+        saveScore()
+      }
     }
   }, [score, now]);
 
-    return (
-        <div className="daily mx-auto w-full md:max-w-2xl">
-            <Game/>
-            {score > 0 && (
-                <h1>Come back tomorrow to play the next daily challenge!</h1>
-            )}
-        </div>
+  const saveScore = () => {
+    const storedScores = JSON.parse(localStorage.getItem("scores") || "[]");
+    localStorage.setItem(
+      "scores",
+      JSON.stringify([...storedScores, {date: now, score: score, guess: guess}])
     );
+  }
+
+  return (
+    <div className="daily mx-auto w-full md:max-w-2xl">
+      <Game />
+    </div>
+  );
 };
 
 export default Daily;
