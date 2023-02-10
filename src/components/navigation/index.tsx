@@ -76,7 +76,7 @@ const Navbar = () => {
                 Stats
               </Link>
             </nav>
-            <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+            {/* <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
               {userInfo.name ? (
                 <button className="flex items-center p-1.5 rounded">
                   <p className="mr-1 italic text-sm text-slate-400">Hi {userInfo.name.split(" ")[0]}!</p>
@@ -89,7 +89,7 @@ const Navbar = () => {
               ) : (
                 <GoogleAuth />
               )}
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -165,11 +165,11 @@ const Navbar = () => {
                 </nav>
               </div>
             </div>
-            <div className="py-6 px-5 space-y-6">
+            {/* <div className="py-6 px-5 space-y-6">
               <div>
                 <GoogleAuth />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
