@@ -3,7 +3,7 @@ import moment from "moment";
 import Game from "../components/game";
 import shuffledList from "../utils/shuffledList";
 import gameContext from "../contexts/gameContext";
-import Modal from "../components/modal/Modal";
+import Modal from "../components/modal";
 
 const Daily = () => {
   const [showModal, setShowModal] = React.useState(true);
