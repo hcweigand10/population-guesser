@@ -3,6 +3,7 @@
   max-width: 400px;
   margin: 0 auto;
   background-image: url("//unpkg.com/three-globe/example/img/night-sky.png");
+  overflow: hidden
 }
 
 .world {

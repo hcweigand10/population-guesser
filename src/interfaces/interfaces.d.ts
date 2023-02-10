@@ -22,5 +22,7 @@ export type userContext = {
 
 export interface score  {
   date: string,
-  score: number
+  score: number,
+  guess: number,
+  country: string,
 }

@@ -7,7 +7,6 @@ import Loading from "../loading";
 import ScoreDisplay from "../scoreDisplay";
 import gameContext from "../../contexts/gameContext";
 import "./game.component.css";
-import Modal from "../modal/modal";
 
 import Globe from "react-globe.gl";
 import { SizeMe } from "react-sizeme";
@@ -16,11 +15,8 @@ const strict = 0.4;
 
 const Game = () => {
   const location = useLocation();
-  const [mode, setMode] = useState<string>("");
+  const [mode, setMode] = useState<string>(location.pathname);
   const [input, setInput] = useState<string>("");
-  const [width, setWidth] = useState(0);
-  const [render, setRender] = useState<boolean>(false);
-  const [modalStatus, setModalStatus] = useState<boolean>(false);
   // const [population, setPopulation] = useState<number>(20);
   // const [iso2, setIso2] = useState<string>("")
   // const [coordinates, setCoordinates] = useState<number[]>([])
@@ -53,11 +49,6 @@ const Game = () => {
     }
   };
 
-  const handleModal = () => {
-    console.log("test");
-    setModalStatus(!modalStatus);
-  };
-
   const calculateScore = (guess: number): number => {
     // wow, look at this
     const correctAnswer = data?.info[0].population / 1000;
@@ -71,19 +62,6 @@ const Game = () => {
     return parseInt(result.toFixed(2));
   };
 
-  const parent = React.useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setRender(true);
-    }, 5000);
-    if (parent.current) {
-      setWidth(parent?.current.offsetWidth);
-    }
-    setMode(location.pathname);
-    return () => clearTimeout(timer);
-  }, []);
-
   const newCountry = () => {
     setCountry(countryList[Math.floor(Math.random() * countryList.length)]);
     setScore(-1);
@@ -95,40 +73,16 @@ const Game = () => {
       style={{ height: "calc(100vh - 103px)" }}
     >
       <div className="h-full">
-        {modalStatus ? (
-          <Modal setModalStatus={setModalStatus} modalStatus />
-        ) : (
-          ""
-        )}
-
-        {/* <SizeMe>
-          {({ size }) => ( */}
-        <div className="flex flex-column h-full justify-center overflow-auto">
-          {data && render ? (
-            <div className="game-container flex flex-col  justify-center h-full ">
-              <div className="w-full flex justify-center">
-                {/* <div onClick={() => handleModal()}>
-                  <svg
-                    className="w-6 h-6 text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                    ></path>
-                  </svg>
-                </div> */}
-              </div>
+        <SizeMe>
+          {({ size }) => (
+        <div className="flex flex-column h-full w-full justify-center overflow-visible font-display ">
+          {data && size ? (
+            <div className="game-container flex flex-col justify-center h-full">
               {/* first section */}
-              <div className="flex justify-center">
+              <div className="flex justify-center z-10">
                 {score >= 0 ? (
                   <div className="flex flex-col">
-                    <h1 className="text-3xl leading-9 tracking-tight mt-2 text-white">
+                    <h1 className="text-4xl leading-9 tracking-tight mt-2 font-display">
                       {country}
                     </h1>
                     <ScoreDisplay correct={data?.info[0].population / 1000} />
@@ -179,22 +133,29 @@ const Game = () => {
                   </form>
                 )}
               </div>
-              <GlobeComponent
-                width={330}
-                height={360}
-                iso2={data.info[0].iso2}
-                coordinates={data.coord}
-              />
+              <div className="flex-1 md:flex-[0.5_0.5_0%]">
+              </div>
+              <div className="absolute overflow-visible flex justify-center items-center z-0 top-0 left-0 right-0 bottom-0">
+                <GlobeComponent
+                  width={window.innerWidth}
+                  height={window.innerHeight - 103}
+                  iso2={data.info[0].iso2}
+                  coordinates={data.coord}
+                />
+                
+              </div>
+              <div className="z-10 font-display my-10 leading-9">
               {mode === "/practice" ? (
-                <div className="text-white p-2">
+                <div className="text-white p-2 flex-1">
                   Guess the population of the country displayed on the globe.
                   This is practice mode so you can try multiple times
                 </div>
               ) : (
-                <h1 className="text-white text-center my-0">
+                <h1 className="text-white text-center my-10 font-display">
                   Come back tomorrow to play the next daily challenge!
                 </h1>
               )}
+              </div>
             </div>
           ) : (
             <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">
@@ -211,8 +172,8 @@ const Game = () => {
             </div>
           )}
         </div>
-        {/* )}
-        </SizeMe> */}
+        )}
+        </SizeMe>
       </div>
     </div>
   );
