@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import * as agCharts from 'ag-charts-community';
 import { AgChartsReact } from 'ag-charts-react';
 
 interface props {
