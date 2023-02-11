@@ -150,11 +150,7 @@ const Game = () => {
                   Guess the population of the country displayed on the globe.
                   This is practice mode so you can try multiple times
                 </div>
-              ) : (
-                <h1 className="text-white text-center my-10 font-display">
-                  Come back tomorrow to play the next daily challenge!
-                </h1>
-              )}
+              ) : null}
               </div>
             </div>
           ) : (
