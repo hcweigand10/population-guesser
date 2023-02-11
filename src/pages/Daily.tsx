@@ -6,6 +6,8 @@ import gameContext from "../contexts/gameContext";
 import Modal from "../components/modal";
 
 const Daily = () => {
+  const [showModal, setShowModal] = React.useState(true);
+
   const { country, setCountry, score, setScore, guess, setGuess } =
     useContext(gameContext);
 
@@ -69,6 +71,7 @@ const Daily = () => {
 
   return (
     <div className="daily mx-auto w-full md:max-w-2xl">
+      <Modal showModal={showModal} setShowModal={setShowModal}/>
       <Game />
     </div>
   );
