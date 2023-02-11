@@ -84,7 +84,7 @@ function GlobeComponent(props: props) {
   },[])
 
   return (
-    <div className="globe mx-auto absolute -z-1 ">
+    <div className="globe mx-auto">
       <Globe
         ref={globeEl}
         polygonAltitude={altitude}
@@ -99,21 +99,18 @@ function GlobeComponent(props: props) {
         polygonSideColor={() => "rgba(255, 255, 255, 0.15)"}
         // backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
         backgroundColor="rgba(0,0,0,0)"
-        animateIn={true}
+        animateIn={false}
         showAtmosphere={true}
-        showGraticules={true}
         // during the day have the globe not night but otherwise night mode
         globeImageUrl={
           isDay
             ? "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
             : "//unpkg.com/three-globe/example/img/earth-night.jpg"
         }
-        atmosphereAltitude={0.2}
-        arcStartLat={60}
-        arcStartLng={60}
+        arcStartLat={42}
+        arcStartLng={42}
         width={props.width}
         height={props.height}
-        waitForGlobeReady={true}
         onPolygonClick={handleClick}
       />
     </div>
