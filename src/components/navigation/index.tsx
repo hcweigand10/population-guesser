@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import userContext from "../../contexts/userContext";
 import GoogleAuth from "../googleAuth";
-import globe from '../../assets/globe.png'
+
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
 
@@ -14,16 +14,15 @@ const Navbar = () => {
       <div className="relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
-            <div className="flex justify-start lg:w-0 lg:flex-1 items-center">
+            <div className="flex justify-start lg:w-0 lg:flex-1">
               <a href="/">
                 <span className="sr-only">Logo</span>
                 <img
-                  className="h-20 w-auto sm:h-12"
-                  src={globe}
-                  alt="" 
+                  className="h-8 w-auto sm:h-10"
+                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                  alt=""
                 />
               </a>
-              <h1 className="text-white pl-2 font-display text-2xl sm:text-m">GEOQUIZZER</h1>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
               <button

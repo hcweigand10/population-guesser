@@ -6,9 +6,6 @@ module.exports = {
   theme: {
     extend: {
     },
-    fontFamily: {
-      display: ["Orbitron"]
-    }
   },
   plugins: [],
 }
