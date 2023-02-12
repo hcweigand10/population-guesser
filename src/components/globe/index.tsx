@@ -78,6 +78,14 @@ function GlobeComponent(props: props) {
       <Globe
         ref={globeEl}
         polygonAltitude={altitude}
+        polygonsTransitionDuration={transitionDuration}
+        polygonsData={countries.features.filter((d: country) => {
+          return (
+            d.properties.ISO_A2 === props.iso2 ||
+            d.properties.ISO_A2_EH === props.iso2
+          );
+        })}
+        polygonCapColor={() => "rgba(255, 255, 255, 255)"}
         polygonSideColor={() => "rgba(255, 255, 255, 0.15)"}
         // backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
         backgroundColor="rgba(0,0,0,0)"
