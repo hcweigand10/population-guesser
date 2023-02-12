@@ -95,7 +95,7 @@ function GlobeComponent(props: props) {
             d.properties.ISO_A2_EH === props.iso2
           );
         })}
-        polygonCapColor={() => "rgba(255, 255, 255, 0.7)"}
+        polygonCapColor={() => "rgba(255, 255, 255, 255)"}
         polygonSideColor={() => "rgba(255, 255, 255, 0.15)"}
         // backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
         backgroundColor="rgba(0,0,0,0)"
