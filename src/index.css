@@ -26,7 +26,7 @@ code {
 
 .app {
   background-image: url("//unpkg.com/three-globe/example/img/night-sky.png");
-  color: white;
+  color: #36454f;
   height: 100vh;
 }
 
