@@ -21,15 +21,6 @@ const Daily = () => {
 
   useEffect(() => {
     setCountry(shuffledList[daysSinceDec1]);
-    const storedScores = JSON.parse(localStorage.getItem("scores") || "null");
-    // if (storedScores) {
-    //   const latestScore = storedScores.pop()
-    //   if (latestScore.date === now) {
-    //     setScore(parseFloat(latestScore.score))
-    //     console.log(latestScore.score)
-    //     setGuess(parseFloat(latestScore.guess))
-    //   }
-    // }
   }, [daysSinceDec1, now]);
 
   useEffect(() => {
@@ -71,17 +62,11 @@ const Daily = () => {
       ])
     );
   };
-  console.log(score)
 
   return (
     <div className="daily mx-auto w-full md:max-w-2xl">
       <Modal showModal={showModal} setShowModal={setShowModal} />
       <Game />
-      {score > 0 ? (
-        <h1 className="text-white text-center my-10 font-display">
-          Come back tomorrow to play the next daily challenge!
-        </h1>
-      ) : null}
     </div>
   );
 };
