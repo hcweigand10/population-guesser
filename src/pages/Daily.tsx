@@ -71,7 +71,6 @@ const Daily = () => {
       ])
     );
   };
-  console.log(score)
 
   return (
     <div className="daily mx-auto w-full md:max-w-2xl">

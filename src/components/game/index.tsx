@@ -11,6 +11,7 @@ import "./game.component.css";
 import Globe from "react-globe.gl";
 import { SizeMe } from "react-sizeme";
 import { useLocation } from "react-router-dom";
+import Flag from "../flag";
 const strict = 0.4;
 
 const Game = () => {
@@ -83,7 +84,7 @@ const Game = () => {
                 {score >= 0 ? (
                   <div className="flex flex-col">
                     <h1 className="text-4xl leading-9 tracking-tight mt-2 font-display">
-                      {country}
+                      {country} <Flag country={country}/>
                     </h1>
                     <ScoreDisplay correct={data?.info[0].population / 1000} />
                     {mode === "/practice" ? (
@@ -99,7 +100,7 @@ const Game = () => {
                 ) : (
                   <form onSubmit={checkGuess}>
                     <h1 className="text-3xl leading-9 tracking-tight mt-2 text-white">
-                      {country}
+                      {country} <Flag country={country}/>
                     </h1>
                     <h2>{isLoading && "loading"}</h2>
                     {isError && <p>api error</p>}

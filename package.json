@@ -27,6 +27,7 @@
     "process": "^0.11.10",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
+    "react-country-flag": "^3.0.2",
     "react-dom": "^18.2.0",
     "react-globe": "^5.0.2",
     "react-globe.gl": "^2.22.8",
