@@ -258,8 +258,6 @@ const Flag = (props: props) => {
   function getKeyByValue(object: { [index: string]: string }, value: string) {
     return Object.keys(object).find((key) => object[key] === value);
   }
-  console.log(getKeyByValue(countryCodes, props.country))
-  console.log("hi")
 
   return (
     <ReactCountryFlag

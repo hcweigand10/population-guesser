@@ -65,7 +65,6 @@ function GlobeComponent(props: props) {
           currentTime.split(":")[0] >= sunrise.split(":")[0] &&
           currentTime.split(":")[0] <= sunset.split(":")[0]
         ) {
-          console.log(true, "running is day");
           setIsDay(true);
         }
       });

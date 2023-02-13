@@ -21,15 +21,6 @@ const Daily = () => {
 
   useEffect(() => {
     setCountry(shuffledList[daysSinceDec1]);
-    const storedScores = JSON.parse(localStorage.getItem("scores") || "null");
-    // if (storedScores) {
-    //   const latestScore = storedScores.pop()
-    //   if (latestScore.date === now) {
-    //     setScore(parseFloat(latestScore.score))
-    //     console.log(latestScore.score)
-    //     setGuess(parseFloat(latestScore.guess))
-    //   }
-    // }
   }, [daysSinceDec1, now]);
 
   useEffect(() => {

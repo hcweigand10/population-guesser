@@ -59,7 +59,6 @@ const Game = () => {
       Math.E **
         (-((10 * strict ** 2) / correctAnswer ** 0.1) *
           (Math.log(correctAnswer) - Math.log(guess)) ** 2);
-    console.log(guess, result);
     return parseInt(result.toFixed(2));
   };
 
@@ -83,7 +82,7 @@ const Game = () => {
               <div className="flex justify-center z-10">
                 {score >= 0 ? (
                   <div className="flex flex-col">
-                    <h1 className="text-4xl leading-9 tracking-tight mt-2 font-display">
+                    <h1 className="text-4xl leading-9 tracking-tight mt-2 font-display text-white">
                       {country} <Flag country={country}/>
                     </h1>
                     <ScoreDisplay correct={data?.info[0].population / 1000} />
