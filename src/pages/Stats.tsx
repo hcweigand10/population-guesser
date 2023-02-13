@@ -24,7 +24,7 @@ const Stats = () => {
 
   return (
     <div className="text-white p-5 max-w-5xl mx-auto">
-      <h1 className="text-3xl mb-4 text-center">Stats</h1>
+      <h1 className="text-4xl py-3 mb-4 text-center">Stats</h1>
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
         <StatsCard name="total games" value={scores.length} icon={faChartLine} subtitle=""/>
         <StatsCard name="average" value={average} icon={faThumbsUp} subtitle=""/>

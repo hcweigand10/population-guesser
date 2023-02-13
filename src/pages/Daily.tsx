@@ -67,11 +67,6 @@ const Daily = () => {
     <div className="daily mx-auto w-full md:max-w-2xl">
       <Modal showModal={showModal} setShowModal={setShowModal} />
       <Game />
-      {score > 0 ? (
-        <h1 className="text-white text-center my-10 font-display">
-          Come back tomorrow to play the next daily challenge!
-        </h1>
-      ) : null}
     </div>
   );
 };
