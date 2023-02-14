@@ -18,9 +18,7 @@ const Game = () => {
   const location = useLocation();
   const [mode, setMode] = useState<string>(location.pathname);
   const [input, setInput] = useState<string>("");
-  // const [population, setPopulation] = useState<number>(20);
-  // const [iso2, setIso2] = useState<string>("")
-  // const [coordinates, setCoordinates] = useState<number[]>([])
+
 
   const { country, setCountry, score, setScore, setGuess } =
     useContext(gameContext);
@@ -82,8 +80,8 @@ const Game = () => {
                   <div className="flex justify-center z-10">
                     {score >= 0 ? (
                       <div className="flex flex-col">
-                        <h1 className="text-4xl leading-9 tracking-tight mt-2 font-display text-white">
-                          {country} <Flag country={country} />
+                        <h1 className="text-4xl leading-9 tracking-tight mt-2 font-display text-white bg-blue hover:backdrop-brightness-50 p-2 rounded-md">
+                          {country} <Flag country={country} /> 
                         </h1>
                         <ScoreDisplay
                           correct={data?.info[0].population / 1000}
@@ -100,7 +98,7 @@ const Game = () => {
                       </div>
                     ) : (
                       <form onSubmit={checkGuess}>
-                        <h1 className="text-3xl leading-9 tracking-tight mt-2 text-white">
+                        <h1 className="text-3xl leading-9 tracking-tight mt-2 text-white hover:backdrop-brightness-50 p-2 rounded-md">
                           {country} <Flag country={country} />
                         </h1>
                         <h2>{isLoading && "loading"}</h2>
@@ -149,7 +147,7 @@ const Game = () => {
                       <div className="text-white p-2 flex-1">
                         Guess the population of the country displayed on the
                         globe. This is practice mode so you can try multiple
-                        times
+                        times.
                       </div>
                     ) : null}
                     {score > 0 && mode === "/" ? (

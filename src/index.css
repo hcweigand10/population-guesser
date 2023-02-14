@@ -28,6 +28,7 @@ code {
   background-image: url("//unpkg.com/three-globe/example/img/night-sky.png");
   color: #36454f;
   height: 100vh;
+  max-height: 100vh;
 }
 
 
