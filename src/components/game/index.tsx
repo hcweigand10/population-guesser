@@ -135,9 +135,10 @@ const Game = () => {
                   </div>
                   <div className="flex-1 md:flex-[0.5_0.5_0%]"></div>
                   <div className="absolute overflow-visible flex justify-center items-center z-0 top-0 left-0 right-0 bottom-0">
+                  
                     <GlobeComponent
                       width={window.innerWidth}
-                      height={window.innerHeight - 103}
+                      height={window.innerHeight - 200}
                       iso2={data.info[0].iso2}
                       coordinates={data.coord}
                     />
@@ -158,7 +159,7 @@ const Game = () => {
                   </div>
                 </div>
               ) : (
-                <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">
+                <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-40 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">
                   <div
                     className="w-12 h-12 rounded-full animate-spin
                     border-2 border-solid border-blue-500 border-t-transparent shadow-md mb-4"

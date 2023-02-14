@@ -22,10 +22,10 @@ const Daily = () => {
 
   useEffect(() => {
     const storedScores = JSON.parse(localStorage.getItem("scores") || "null");
-    if(storedScores !== null){
+    if (storedScores !== null) {
       setSavedScores(true);
     }
-  })
+  });
 
   useEffect(() => {
     setCountry(shuffledList[daysSinceDec1]);
@@ -72,8 +72,15 @@ const Daily = () => {
   };
 
   return (
-    <div className="daily mx-auto w-full md:max-w-2xl">
-      {savedScores ? <Game /> : <Modal showModal={showModal} setShowModal={setShowModal} />}
+    <div className="daily mx-auto w-full md:max-w-2xl relative z-10">
+      <div className="flex-1">
+        {savedScores ? (
+          ""
+        ) : (
+          <Modal showModal={showModal} setShowModal={setShowModal} />
+        )}
+        <Game />
+      </div>
     </div>
   );
 };
