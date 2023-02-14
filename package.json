@@ -48,7 +48,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "webpack",
+    "build": "webpack && echo '/* /index.html  200' | cat >dist/_redirects",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:dev": "webpack serve --config ./webpack.config.js --mode development --port 3000"
