@@ -40,12 +40,14 @@ function GlobeComponent(props: props) {
       globeEl.current.pointOfView({ ...mapCenter, altitude: 1 }, 2000);
     }
   };
+
   useEffect(() => {
     // load data
     if (globeEl.current) {
       globeEl.current.pointOfView(mapCenter, transitionDuration);
     }
   }, [mapCenter, altitude, props.coordinates]);
+  
   useEffect(() => {
     const getSunData = async () => {
       // get sunrise and sun set of current location
@@ -65,6 +67,7 @@ function GlobeComponent(props: props) {
           currentTime.split(":")[0] >= sunrise.split(":")[0] &&
           currentTime.split(":")[0] <= sunset.split(":")[0]
         ) {
+          console.log(true, "running is day");
           setIsDay(true);
         }
       });
@@ -84,7 +87,7 @@ function GlobeComponent(props: props) {
             d.properties.ISO_A2_EH === props.iso2
           );
         })}
-        polygonCapColor={() => "rgba(255, 255, 255, 255)"}
+        polygonCapColor={() => "rgba(251, 248, 248, 0.75)"}
         polygonSideColor={() => "rgba(255, 255, 255, 0.15)"}
         // backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
         backgroundColor="rgba(0,0,0,0)"

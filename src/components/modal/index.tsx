@@ -83,7 +83,7 @@ export default function Modal({ setShowModal, showModal }: Props) {
                   </p>
 
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    Have feedback? Email us at testing@testing.com
+                    Have feedback? Email us at henryweigand10@gmail.com
                   </p>
                 </div>
               </div>

@@ -10,10 +10,10 @@ const Navbar = () => {
   const { userInfo } = useContext(userContext);
 
   return (
-    <div className="max-h-screen w-screen overflow-auto m-auto">
-      <div className="relative">
+    <div className="max-h-screen w-screen overflow-auto mx-auto">
+      <div className="relative backdrop-opacity-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+          <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10 ">
             <div className="flex justify-start lg:w-0 lg:flex-1 items-center">
               <a href="/">
                 <span className="sr-only">Logo</span>
@@ -174,6 +174,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      {/* page content */}
       <Outlet />
     </div>
   );

@@ -7,6 +7,7 @@ import Modal from "../components/modal";
 
 const Daily = () => {
   const [showModal, setShowModal] = React.useState(true);
+  const [savedScores, setSavedScores] = useState<boolean>(false);
 
   const { country, setCountry, score, setScore, guess, setGuess } =
     useContext(gameContext);
@@ -18,6 +19,13 @@ const Daily = () => {
     moment("2022-12-01", "YYYY-MM-DD"),
     "days"
   );
+
+  useEffect(() => {
+    const storedScores = JSON.parse(localStorage.getItem("scores") || "null");
+    if(storedScores !== null){
+      setSavedScores(true);
+    }
+  })
 
   useEffect(() => {
     setCountry(shuffledList[daysSinceDec1]);
@@ -65,8 +73,7 @@ const Daily = () => {
 
   return (
     <div className="daily mx-auto w-full md:max-w-2xl">
-      <Modal showModal={showModal} setShowModal={setShowModal} />
-      <Game />
+      {savedScores ? <Game /> : <Modal showModal={showModal} setShowModal={setShowModal} />}
     </div>
   );
 };

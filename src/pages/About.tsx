@@ -24,16 +24,17 @@ const About = () => {
       {/* <h3 className="text-2xl text-center pt-4">Created By</h3> */}
       <div className="grid gap-12 sm:grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto">
         <div className="p-8 bg-white shadow mt-24 rounded mx-auto">
-          <div className="grid grid-cols-3 h-0">
-            <div className="relative">
-              <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
+          <div className="grid grid-cols-3 h-0 grid-flow-dense relative">
+            {/* <div className="relative"> */}
+              {/* w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500 place-items-center right-10 */}
+              <div className="col-start-1 w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500 place-items-center">
                 <img
                   className="rounded-full"
                   src={henryPic}
                   alt="Profile pic"
                 />
               </div>
-            </div>
+            {/* </div> */}
 
             <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center"></div>
           </div>
@@ -69,16 +70,14 @@ const About = () => {
           </div>
         </div>
         <div className="p-8 bg-white shadow mt-24 rounded mx-auto">
-        <div className="grid grid-cols-3 h-0">
-            <div className="relative">
-              <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
+        <div className="grid grid-cols-3 h-0 relative">
+              <div className="col-start-1 w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500 place-items-center">
                 <img
                   className="rounded-full"
                   src={takaraPic}
                   alt="Profile pic"
                 />
               </div>
-            </div>
 
             <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center"></div>
           </div>
