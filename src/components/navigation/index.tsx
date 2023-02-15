@@ -10,8 +10,8 @@ const Navbar = () => {
   const { userInfo } = useContext(userContext);
 
   return (
-    <div className="max-h-screen w-screen overflow-auto mx-auto">
-      <div className="relative backdrop-opacity-0">
+    <div className="max-h-screen w-screen overflow-auto mx-auto ">
+      <div className="relative z-49">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10 ">
             <div className="flex justify-start lg:w-0 lg:flex-1 items-center">
@@ -28,7 +28,7 @@ const Navbar = () => {
             <div className="-mr-0 -my-2 md:hidden">
               <button
                 type="button"
-                className="z-0 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 z-50"
+                className="z-0 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 z-0"
                 onClick={() => setOpen(!open)}
               >
                 <span className="sr-only">Open menu</span>
