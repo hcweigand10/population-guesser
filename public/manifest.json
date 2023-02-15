@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "GeoQuizzer",
+  "name": "GeoQuizzer",
   "icons": [
     {
       "src": "favicon.ico",

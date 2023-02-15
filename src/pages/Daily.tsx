@@ -6,7 +6,7 @@ import gameContext from "../contexts/gameContext";
 import Modal from "../components/modal";
 
 const Daily = () => {
-  const [showModal, setShowModal] = React.useState(true);
+  const [showModal, setShowModal] = useState<boolean>(true);
   const [savedScores, setSavedScores] = useState<boolean>(false);
 
   const { country, setCountry, score, setScore, guess, setGuess } =
