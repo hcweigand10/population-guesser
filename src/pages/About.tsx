@@ -4,7 +4,7 @@ import takaraPic from "../assets/takara.jpg";
 
 const About = () => {
   return (
-    <div className="p-5 text-white">
+    <div className="px-5 pt-5 text-white">
       <h1 className="text-4xl text-center py-3">About</h1>
       <div className="my-4 text-xl">
         <p className="max-w-xl mx-auto">
@@ -23,7 +23,7 @@ const About = () => {
       </div>
       {/* <h3 className="text-2xl text-center pt-4">Created By</h3> */}
       <div className="grid gap-12 sm:grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto">
-        <div className="p-8 bg-white shadow mt-24 rounded mx-auto">
+        <div className="p-6 bg-white shadow mt-24 rounded mx-auto">
           <div className="grid grid-cols-3 h-0 grid-flow-dense relative">
             {/* <div className="relative"> */}
               {/* w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500 place-items-center right-10 */}
@@ -52,7 +52,7 @@ const About = () => {
           </div>
           <div className="grid gap-4 grid-cols-2">
             <a
-              className="text-white text-center py-2 px-4 uppercase rounded bg-red-400 hover:bg-red-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+              className="text-white text-center py-2 px-3 uppercase rounded bg-red-400 hover:bg-red-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
               href="https://henryweigand.com/"
               target="_blank"
               rel="noreferrer"
@@ -60,7 +60,7 @@ const About = () => {
               Portfolio
             </a>
             <a
-              className="text-white text-center py-2 px-4 uppercase rounded bg-slate-600 hover:bg-slate-900 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+              className="text-white text-center py-2 px-3 uppercase rounded bg-slate-600 hover:bg-slate-900 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
               href="https://github.com/hcweigand10"
               target="_blank"
               rel="noreferrer"
@@ -69,7 +69,7 @@ const About = () => {
             </a>
           </div>
         </div>
-        <div className="p-8 bg-white shadow mt-24 rounded mx-auto">
+        <div className="p-6 bg-white shadow mt-24 rounded mx-auto">
         <div className="grid grid-cols-3 h-0 relative">
               <div className="col-start-1 w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500 place-items-center">
                 <img
@@ -93,7 +93,7 @@ const About = () => {
           </div>
           <div className="grid gap-4 grid-cols-2">
             <a
-              className="text-white text-center py-2 px-4 uppercase rounded bg-red-400 hover:bg-red-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+              className="text-white text-center py-2 px-3 uppercase rounded bg-red-400 hover:bg-red-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
               href="http://takaraktruong.com/"
               target="_blank"
               rel="noreferrer"
@@ -101,7 +101,7 @@ const About = () => {
               Portfolio
             </a>
             <a
-              className="text-white text-center py-2 px-4 uppercase rounded bg-slate-600 hover:bg-slate-900 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+              className="text-white text-center py-2 px-3 uppercase rounded bg-slate-600 hover:bg-slate-900 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
               href="https://github.com/truont2"
               target="_blank"
               rel="noreferrer"
@@ -111,6 +111,9 @@ const About = () => {
           </div>
         </div>
       </div>
+      <footer className="text-white text-center mt-10 mb-2">
+        <p>Love our game? Buy us a coffee on Venmo! @henry-weigand or @gundamt00</p>
+      </footer>
     </div>
   );
 };
