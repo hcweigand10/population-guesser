@@ -18,13 +18,13 @@ export default function Modal({ setShowModal, showModal }: Props) {
       </button> */}
       {showModal ? (
         <>
-          {" "}
+          
           <div className="animate-reveal justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none mt-10">
             <div className="relative w-auto pt-20 mt-25 mb-0 md:my-6 mx-auto md:max-w-3xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                {/* <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <h3 className="text-3xl font-semibold text-black">
                     How to play
                   </h3>
@@ -36,7 +36,7 @@ export default function Modal({ setShowModal, showModal }: Props) {
                       ×
                     </span>
                   </button>
-                </div>
+                </div> */}
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
@@ -56,7 +56,7 @@ export default function Modal({ setShowModal, showModal }: Props) {
                   </p>
 
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    Practice using out practice mode to get a feel of how the
+                    Practice using our practice mode to get a feel of how the
                     game works!
                   </p>
 
