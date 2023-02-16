@@ -18,31 +18,36 @@ export default function Modal({ setShowModal, showModal }: Props) {
       </button> */}
       {showModal ? (
         <>
-          <div className="animate-reveal justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto mt-20 mb-0 md:my-6 mx-auto md:max-w-3xl">
+          
+          <div className="mt-10 animate-reveal justify-center items-center overflow-x-hidden overflow-y-auto inset-0 fixed z-50 outline-none focus:outline-none">
+            <div className="w-auto mb-0 md:my-6 mx-auto md:max-w-3xl">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="border-0 rounded-lg shadow-lg flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold text-black">
-                    How to play
-                  </h3>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
-                  >
-                    <span className="bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button>
-                </div>
+                {/* <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+
+                </div> */}
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
+                <button
+                  className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                  onClick={() => setShowModal(false)}
+                >
+                  <span className="bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none">
+                    ×
+                  </span>
+                </button>
+                <h3 className="text-3xl font-semibold text-black">
+                  How to play
+                </h3>
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     Guess the population of the given country
                     <ul>
                       <li>Guesses are made in the millions</li>
-                      <li>Your score will be provided to you after your guess. Aim to get 100!</li>
+                      <li>
+                        Your score will be provided to you after your guess. Aim
+                        to get 100!
+                      </li>
                     </ul>
                   </p>
 
@@ -52,7 +57,7 @@ export default function Modal({ setShowModal, showModal }: Props) {
                   </p>
 
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    Practice using out practice mode to get a feel of how the
+                    Practice using our practice mode to get a feel of how the
                     game works!
                   </p>
 
@@ -60,7 +65,6 @@ export default function Modal({ setShowModal, showModal }: Props) {
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     Country: Japan; Guess: 10 = 10 million
                   </p>
-
                 </div>
                 {/*footer*/}
                 <div className="flex flex-col items-start justify-end p-6 border-t border-solid border-slate-200 rounded-b">
@@ -79,7 +83,8 @@ export default function Modal({ setShowModal, showModal }: Props) {
                     Save Changes
                   </button> */}
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    A new country is released daily at midnight. If you haven't already, you can sign up for our daily reminder email.
+                    A new country is released daily at midnight. If you haven't
+                    already, you can sign up for our daily reminder email.
                   </p>
 
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
