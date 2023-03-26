@@ -45,7 +45,7 @@ const Daily = () => {
             "scores",
             JSON.stringify([
               ...storedScores,
-              { date: now, score: score, guess: guess },
+              { date: now, score, guess, country },
             ])
           );
         }
@@ -66,7 +66,7 @@ const Daily = () => {
       "scores",
       JSON.stringify([
         ...storedScores,
-        { date: now, score: score, guess: guess },
+        { date: now, score, guess, country },
       ])
     );
   };

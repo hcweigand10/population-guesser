@@ -22,6 +22,22 @@ const Stats = () => {
   [scores.length - 1]
   const worst = sortedScores[0]
 
+  const getTitle = (average: number) => {
+    if (average >= 90) {
+      return "Maestro"
+    } else if (average >= 80 && average < 90) {
+      return "Elite"
+    } else if (average >= 70 && average < 80) {
+      return "Great"
+    } else if (average >= 60 && average < 70) {
+      return "Solid"
+    } else if (average >= 40 && average < 60) {
+      return "Mediocre"
+    } else {
+      return "Ehh"
+    }
+  }
+
   return (
     <div className="text-white p-5 max-w-5xl mx-auto">
       <h1 className="text-4xl py-3 mb-4 text-center">Stats</h1>
@@ -51,7 +67,6 @@ const Stats = () => {
       icon={faHeartCrack}
       subtitle={worst.country}
     />
-    <Histogram scores={histogramscores} />
   </div>
 ) : (
   <h4 className="text-center text-xl">
