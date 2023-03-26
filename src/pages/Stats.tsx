@@ -1,26 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { score } from "../interfaces/interfaces";
 import StatsCard from "../components/statsCard";
-import { faChartLine,
+import {
+  faChartLine,
   faHeartCrack,
   faTrophy,
-  faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+  faThumbsUp,
+} from "@fortawesome/free-solid-svg-icons";
 import Histogram from "../components/histogram";
 
 const Stats = () => {
-  const [scores, setScores] = useState<score[]>(JSON.parse(localStorage.getItem("scores") || "[]"));
+  const [scores, setScores] = useState<score[]>(
+    JSON.parse(localStorage.getItem("scores") || "[]")
+  );
 
-  const sortedScores = scores.sort((a,b) => a.score - b.score)
-  const histogramscores = scores.map(score => {
-    return {score: score.score}
-  })
-  const average = Math.round(scores.reduce((prev,curr) => {
-    return prev + curr.score
-  }, 0)/scores.length)
+  const sortedScores = scores.sort((a, b) => a.score - b.score);
+  const histogramscores = scores.map((score) => {
+    return { score: score.score };
+  });
+  const average = Math.round(
+    scores.reduce((prev, curr) => {
+      return prev + curr.score;
+    }, 0) / scores.length
+  );
 
-  const best = sortedScores
-  [scores.length - 1]
-  const worst = sortedScores[0]
+  const best = sortedScores[scores.length - 1];
+  const worst = sortedScores[0];
 
   const getTitle = (average: number) => {
     if (average >= 90) {
