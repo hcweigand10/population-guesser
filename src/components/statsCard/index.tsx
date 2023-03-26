@@ -14,6 +14,8 @@ interface props {
 }
 
 const StatsCard = (props: props) => {
+  const styles = props.name === "total games" ? {color: "white"} : {color: `rgb(${510 - 5.1 * props.value}, ${5.1*100}, 0)`}
+ 
   return (
     <div className="shadow-md p-4 bg-slate-800 mb-5 rounded">
       <div className="flex row">
@@ -24,9 +26,9 @@ const StatsCard = (props: props) => {
             </div>
             <div className="mt-1">
               <div className="flex space-x-2 items-center">
-                <div className="text-3xl font-bold">{props.value}</div>
+                <div className="text-3xl font-bold" style={styles}>{props.value}</div>
                 {props.subtitle ? <div className="text-xs text-slate-800 bg-slate-200 rounded-md p-1">
-                  ({props.subtitle})
+                  {props.subtitle}
                 </div> : null}
               </div>
             </div>

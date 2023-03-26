@@ -12,6 +12,7 @@ import Globe from "react-globe.gl";
 import { SizeMe } from "react-sizeme";
 import { useLocation } from "react-router-dom";
 import Flag from "../flag";
+
 const strict = 0.4;
 
 const Game = () => {
@@ -71,16 +72,16 @@ const Game = () => {
       style={{ height: "calc(100vh - 103px)" }}
     >
       <div className="h-full">
-        <SizeMe>
-          {({ size }) => (
+        {/* <SizeMe>
+          {({ size }) => ( */}
             <div className="flex flex-column h-full w-full justify-center overflow-visible font-display ">
-              {data && size ? (
+              {data ? (
                 <div className="game-container flex flex-col justify-center h-full">
                   {/* first section */}
                   <div className="flex justify-center z-10">
                     {score >= 0 ? (
                       <div className="flex flex-col">
-                        <h1 className="text-4xl leading-9 tracking-tight mt-2 font-display text-white bg-blue hover:backdrop-brightness-50 p-2 rounded-md">
+                        <h1 className="text-4xl leading-9 tracking-tight mt-2 font-display text-white bg-blue backdrop-brightness-50 p-2 rounded-md">
                           {country} <Flag country={country} /> 
                         </h1>
                         <ScoreDisplay
@@ -98,7 +99,7 @@ const Game = () => {
                       </div>
                     ) : (
                       <form onSubmit={checkGuess}>
-                        <h1 className="text-3xl leading-9 tracking-tight mt-2 text-white hover:backdrop-brightness-50 p-2 rounded-md">
+                        <h1 className="text-3xl leading-9 tracking-tight mt-2 text-white backdrop-brightness-50 p-2 rounded-md">
                           {country} <Flag country={country} />
                         </h1>
                         <h2>{isLoading && "loading"}</h2>
@@ -173,8 +174,8 @@ const Game = () => {
                 </div>
               )}
             </div>
-          )}
-        </SizeMe>
+          {/* )} */}
+        {/* </SizeMe> */}
       </div>
     </div>
   );

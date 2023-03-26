@@ -25,7 +25,7 @@ interface IMapCenter {
   altitude: number;
 }
 function GlobeComponent(props: props) {
-  const [isDay, setIsDay] = useState<boolean>(false);
+  const [isDay, setIsDay] = useState<boolean>(true);
   const globeEl = useRef<GlobeMethods>();
   const [countries, setCountries] = useState<any>(countryData);
   const [mapCenter, setMapCenter] = useState<IMapCenter>({
@@ -93,15 +93,15 @@ function GlobeComponent(props: props) {
         backgroundColor="rgba(0,0,0,0)"
         animateIn={true}
         showAtmosphere={true}
-        showGraticules={true}
         // during the day have the globe not night but otherwise night mode
         globeImageUrl={
           isDay
             ? "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
             : "//unpkg.com/three-globe/example/img/earth-night.jpg"
         }
+        bumpImageUrl={'//unpkg.com/three-globe/example/img/earth-topology.png'}
         atmosphereAltitude={0.2}
-        arcStartLat={60}
+        arcStartLat={100}
         arcStartLng={60}
         width={props.width}
         height={props.height}
