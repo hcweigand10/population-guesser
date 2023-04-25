@@ -18,7 +18,7 @@ const Daily = () => {
   const daysSinceDec1: number = moment(moment().format("YYYY-MM-DD")).diff(
     moment("2022-12-01", "YYYY-MM-DD"),
     "days"
-  );
+  ) % shuffledList.length;
 
   useEffect(() => {
     const storedScores = JSON.parse(localStorage.getItem("scores") || "null");
