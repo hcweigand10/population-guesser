@@ -11,7 +11,7 @@ const ScoreDisplay = (props: props) => {
   const [percentage, setPercentage] = useState<number>(0);
   const [red, setRed] = useState<number>(510);
   const [green, setGreen] = useState<number>(0);
-  const [reactionText, setReactionText] = useState<string>("Reaction")
+  const [reactionText, setReactionText] = useState<string>("Reaction");
 
   const reactionRef = useRef<HTMLDivElement>(null);
 
@@ -39,7 +39,7 @@ const ScoreDisplay = (props: props) => {
     setRed(510 - 5.1 * percentage);
     setGreen(5.1 * percentage);
     if (percentage === 100) {
-      setReactionText("ACE!")
+      setReactionText("ACE!");
       reactionRef.current?.setAttribute(
         "class",
         "text-white text-5xl italic font-bold"
@@ -63,12 +63,14 @@ const ScoreDisplay = (props: props) => {
           text={percentage.toString()}
         />
       </div>
-      <h3 className="text-white">
-        Your Guess: <strong>{guess} million</strong>{" "}
-      </h3>
-      <h3 className="text-white">
-        Correct Answer: <strong>{props.correct} million</strong>
-      </h3>
+      <div className="bg-slate backdrop-brightness-50 rounded font-display">
+        <h3 className="text-white drop-shadow-lg">
+          Your Guess: <strong>{guess} million</strong>{" "}
+        </h3>
+        <h3 className="text-white drop-shadow-lg">
+          Correct Answer: <strong>{props.correct} million</strong>
+        </h3>
+      </div>
       <h1
         className="text-white text-5xl italic font-bold invisible"
         ref={reactionRef}
